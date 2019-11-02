@@ -427,12 +427,17 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
 <ul>
 <li>动态数据表格(Dynamic Data Table)</li>
 <li>动态数据页面(Dynamic Data Page)</li>
+<li>动态数据视图(Dynamic Data View)</li>
 </ul>
 <p>  之所以称之为“动态数据”，是因为：(1) 数据库表格的结构是可以在系统运行期间，在线修改的；(2) 界面及操作功能通过为字段指定类型，即可动态生成。</p>
 <h3 id="%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC">动态数据表格</h3>
 <p>  对应着数据库的表格。而表格是由字段构成的，可以通过在线工具创建表格及其字段，通过为字段指定类型(Field Form)，即可构建出基于该表格的 CRUD 应用。我们通过以下视频了解这一过程。</p>
 <video controls="controls" preload="none" width="380" height="260" src="Video/2019110201.mp4">
 </video>
+<h3 id="%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E9%A1%B5%E9%9D%A2">动态数据页面</h3>
+<p>  框架为每个动态数据表格配备相关的操作页面，这些页面即为动态数据页面。一般一个动态数据表格包括：列表页面(List)，新增页面(NewForm)，修改页面(EditForm)，回收站页面(Recycle)，导入数据页面(ImportData)五个基本的动态数据页面。这五个页面对应着表格的五个视图(View)，用于完成表格数据的 CRUD 操作。动态数据页面的基本构成如下图所示。</p>
+<p><img src="Image/2019110201.png" width="600"></img></p>
+<h3 id="%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E8%A7%86%E5%9B%BE">动态数据视图</h3>
 
 </body>
 </html>
