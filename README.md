@@ -42,5 +42,7 @@
 
 ### &emsp;&emsp;[表格侦听](Chapter03/Sec10.html)
 
+### &emsp;&emsp;[启用版本跟踪](Chapter03/Sec11.html)
+
 ---
 &emsp; &copy; eIvy Framework 2019.

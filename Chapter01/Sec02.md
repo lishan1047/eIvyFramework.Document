@@ -4,4 +4,5 @@
 
 我们可以用下图表示 eIvy Framework 的基本设计思想。
 
-### [上一篇](Sec01.html) &emsp;&emsp; [下一篇](Sec02.html)
+---
+&emsp; &copy; eIvy Framework 2019.
