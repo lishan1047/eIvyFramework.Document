@@ -13,4 +13,4 @@
 
 &emsp;&emsp;对应着数据库的表格。而表格是由字段构成的，可以通过在线工具创建表格及其字段，通过为字段指定类型(Field Form)，即可构建出基于该表格的 CRUD 应用。我们通过以下视频了解这一过程。  
 
-<iframe width="560" height="315" src="Video/2019110201.mp4" frameborder="0" allowfullscreen></iframe>
+[![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](Video/2019110201.mp4)
