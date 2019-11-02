@@ -10,15 +10,15 @@
 
 ### &emsp;&emsp;[核心概念](Chapter01/Sec03.html)  
 
-### &emsp;&emsp;[不同版本](Chapter01/Sec04.html)
-
 ## [安装](Chapter02/Index.html)
 
 ### &emsp;&emsp;[环境准备](Chapter02/Sec01.html)
 
-### &emsp;&emsp;[手动安装](Chapter02/Sec02.html)
+### &emsp;&emsp;[不同版本](Chapter02/Sec02.html)
 
-### &emsp;&emsp;[安装程序](Chapter02/Sec03.html)
+### &emsp;&emsp;[手动安装](Chapter02/Sec03.html)
+
+### &emsp;&emsp;[安装程序](Chapter02/Sec04.html)
 
 ## [数据库](Chapter03/Index.html)
 
@@ -104,13 +104,13 @@
 
 ### &emsp;&emsp;[页面标签](Chapter10/Sec03.html)
 
-### &emsp;&emsp;[筛选子句标签](Chapter/Sec04.html)
+### &emsp;&emsp;[筛选子句标签](Chapter10/Sec04.html)
 
-### &emsp;&emsp;[排序子句标签](Chapter/Sec05.html)
+### &emsp;&emsp;[排序子句标签](Chapter10/Sec05.html)
 
-### &emsp;&emsp;[命令参考](Chapter/Sec06.html)
+### &emsp;&emsp;[命令参考](Chapter10/Sec06.html)
 
-### &emsp;&emsp;[工具栏配置](Chapter/Sec07.html)
+### &emsp;&emsp;[工具栏配置](Chapter10/Sec07.html)
 
 ---
 &emsp; &copy; eIvy Framework 2019.
