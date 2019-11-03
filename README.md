@@ -1,4 +1,4 @@
-# eIvyFramework 使用文档
+# <div style="height:40px"><div style="float:left">eIvy Framework 使用文档</div> <div style="float:right"><img width="80" height="40" src="Logo.png"></img></div></div>
 
 提供 eIvy Framework 的使用手册与教程
 
