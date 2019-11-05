@@ -44,6 +44,10 @@
 
 ### &emsp;&emsp;[启用版本跟踪](Chapter03/Sec11.html)
 
+### &emsp;&emsp;[注册验证器](Sec12.html)
+
+### &emsp;&emsp;[账号激活器](Sec13.html)
+
 ## [站点](Chapter04/Index.html)
 
 ### &emsp;&emsp;[站点基本配置](Chapter04/Sec01.html)
