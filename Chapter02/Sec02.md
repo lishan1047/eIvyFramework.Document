@@ -23,6 +23,7 @@
 |页块|&times;|&radic;|&radic;|&radic;|
 |easyui<sup>3</sup>|&times;|&times;|&times;|&radic;|
 |fineui<sup>3</sup>|&times;|&times;|&times;|&radic;|
+|echarts<sup>3</sup>|&times;|&times;|&times;|&radic;|
 |Charts<sup>3</sup>|&times;|&times;|&times;|&radic;|
 |Decision<sup>3</sup>|&times;|&times;|&times;|&radic;|
 |ECJTU<sup>3</sup>|&times;|&times;|&times;|&radic;|
