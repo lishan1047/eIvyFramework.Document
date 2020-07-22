@@ -1,5 +1,27 @@
 # <div style="height:40px"><div style="float:left">eIvy Framework 使用文档</div> <div style="float:right"><img width="80" height="40" src="Logo.png"></img></div></div>
 
+编写说明：  
+（1）需要安装 Visual Studio Code  
+（2）为 Visual Studio Code 安装 Markdown PDF，Markdown Theme Kit，markdownlint 扩展插件  
+（3）为 Visual Studio Code 首选项配置 setting.json 让 markdown 文件自动转换为 html 文件  
+（4）需要安装 Git  
+（5）需要具有 GitHub 账号，如果没有需要注册一个账号  
+（6）在 Visual Studio Code 中从 https://github.com/lishan1047/eIvyFramework.Document.git 获取 eIvyFramework.Document 库  
+注：  
+  setting.json 中为 markdown 配置 html 文件自动生成  
+  ```json
+  {
+    "workbench.colorTheme": "Visual Studio Light",
+    "git.autofetch": true,
+    "markdown-pdf.type": [
+        "html"
+    ],
+    "markdown-pdf.convertOnSave": true,
+    "editor.minimap.enabled": false,
+    "markdown-pdf.clip.height": 0
+  }
+  ```
+
 提供 eIvy Framework 的使用手册与教程
 
 ## [概述](Chapter01/Index.html)
