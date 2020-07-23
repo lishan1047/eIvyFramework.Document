@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sec0304.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../../README.html">返回目录</a></h1>
+<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E9%A1%B5%E9%9D%A2%E6%A0%87%E7%AD%BE---dynamiccrosstable"><a href="../Index.html">技术参考</a> - <a href="../Sec03.html">页面标签</a> - DYNAMICCROSSTABLE</h2>
+<p>  动态交叉表（Dynamic Cross Table）：继承了 DYNAMICLIST 所有特性，但是以交叉表的方式呈现数据，而且与 DYNAMICPIVOT 相比，具有数据编辑的功能。</p>
+<h3 id="%E6%A0%87%E7%AD%BE%E8%AF%AD%E6%B3%95">标签语法</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>/&gt;</span>
+</div></code></pre>
+<p>  交叉表是将数据库中二维表的数据转置为多维表的形式，例如：我们存在一张数据库表格，具备字段 School 学院、Major 专业、Class 班级、StudentCount 学生人数</p>
+<table>
+<thead>
+<tr>
+<th>School</th>
+<th>Major</th>
+<th>Class</th>
+<th>Gender</th>
+<th>StudentCount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经济管理</td>
+<td>会计学</td>
+<td>1班</td>
+<td>男</td>
+<td>11</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>会计学</td>
+<td>1班</td>
+<td>女</td>
+<td>21</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>会计学</td>
+<td>2班</td>
+<td>男</td>
+<td>15</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>会计学</td>
+<td>2班</td>
+<td>女</td>
+<td>16</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>人力资源</td>
+<td>1班</td>
+<td>男</td>
+<td>14</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>人力资源</td>
+<td>1班</td>
+<td>女</td>
+<td>17</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>人力资源</td>
+<td>2班</td>
+<td>男</td>
+<td>13</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>人力资源</td>
+<td>2班</td>
+<td>女</td>
+<td>18</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>人力资源</td>
+<td>3班</td>
+<td>男</td>
+<td>16</td>
+</tr>
+<tr>
+<td>经济管理</td>
+<td>人力资源</td>
+<td>3班</td>
+<td>女</td>
+<td>16</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件工程</td>
+<td>1班</td>
+<td>男</td>
+<td>20</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件工程</td>
+<td>1班</td>
+<td>女</td>
+<td>11</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件工程</td>
+<td>2班</td>
+<td>男</td>
+<td>21</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件工程</td>
+<td>2班</td>
+<td>女</td>
+<td>9</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件测试</td>
+<td>1班</td>
+<td>男</td>
+<td>16</td>
+</tr>
+<tr>
+<td>软件</td>
+<td>软件测试</td>
+<td>1班</td>
+<td>女</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<p>  我们希望以下面的交叉表方式呈现：</p>
+<p><img src="../Image/2020072202.png"></img></p>
+<p>图 1 交叉表呈现方式</p>
+<p>  通过 eIvy:DYNAMICCROSSTABLE 标签可以实现将数据库中原始二维表数据以这种交叉表方式呈现。这里有三个关键概念：行字段（Row Fields）、列字段（Column Fields）、单元格字段（Cell Fields），行字段就是上述交叉表中的 School、Major、Class，列字段则是 Gender，单元格字段是 StudentCount。我们可以通过以下标签来配置：</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
+    <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
+    <span class="hljs-attr">ColumnFieldNames</span>=<span class="hljs-string">"Gender"</span>
+    <span class="hljs-attr">CellFieldNames</span>=<span class="hljs-string">"StudentCount"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  我们还可以通过属性 CellCommandButtonSetting 为单元格中的数据项目提供操作命令，例如下面代码提供了删除命令按钮，图2 显示了配置命令后，当我们鼠标移入到单元格数据项目上，会出现 ... 符号，点击之后会出现命令操作菜单。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
+    <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
+    <span class="hljs-attr">ColumnFieldNames</span>=<span class="hljs-string">"Gender"</span>
+    <span class="hljs-attr">CellFieldNames</span>=<span class="hljs-string">"StudentCount"</span>
+    <span class="hljs-attr">CellCommandButtonSetting</span>=<span class="hljs-string">"[{CommandName:'ListDelete',Text:'删除',CssClass:'fa fa-close',Prompt:'删除数据后无法恢复，是否执行删除？'}]"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  属性 CellCommandButtonSetting 采用 JSON 数组格式，每个{}表达的对象为一个命令按钮配置属性（有关命令按钮的属性参见<a href="../Index.html">命令按钮</a>），而且又因为交叉表继承自 DynamicList，因此适用于 DynamicList 的所有命令都可以用在单元格的数据项上。</p>
+<p>  实际上由于交叉表是继承自 DynamicList，因而 DynamicList 的很多功能和配置属性对于交叉表来说都是有效的，例如：AlwaysEditMode 属性可以让交叉表的单元格数据项处于编辑状态，由此可以通过交叉表的形式来编辑数据。下面的代码使得 StudentCount 字段在交叉表单元格中处于编辑状态，并配合一个保存命令按钮用于保存编辑的数据。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"DCT1"</span>
+    <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
+    <span class="hljs-attr">ColumnFieldNames</span>=<span class="hljs-string">"Gender"</span>
+    <span class="hljs-attr">CellFieldNames</span>=<span class="hljs-string">"StudentCount"</span>
+    <span class="hljs-attr">AlwaysEditMode</span>=<span class="hljs-string">"True"</span>
+/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span> <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DCT1"</span> <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"保存"</span> <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary"</span>/&gt;</span>
+</div></code></pre>
+<p><img src="../Image/2020072301.png"></img></p>
+<p>图 2 交叉表显示效果</p>
+<p>  对于交叉表同样可以采用分页控件进行数据分页呈现，但合计数据只会根据当前页的数据进行汇总。因此，一般情况下我们为了能够显示并合计完整的数据，需要将 DefaultPageSize 属性设置到足够大，以便于交叉表提取到完整的数据。</p>
+<p>  由于交叉表与列表的呈现格式完全不同，因而视图模板在交叉表中会被忽略，因此当你尝试去编辑视图模板获得不一样的界面效果，这一操作是无效的。</p>
+<p>  交叉表还提供了一组高度定制化的样式与外观属性，通过下图大家可以了解这些属性所设置交叉表的对应关系。</p>
+<p><img src="../Image/2020072302.png"></img></p>
+<p>图 3 交叉表的样式与外观属性</p>
+<p>  通过上图大家还观察到了单元格中放置了两个输入框，其实这是在 CellFieldNames 属性设置了两个字段：StudentCount 学生人数、MajorTransCount 转专业人数。这样交叉表会自动将这两个字段放置在单元格中，并且按照对应位置汇总相关数据。同时还可以通过设置 CellItemCssClassSetting 属性分别为这两个字段设置不同的样式，以区分输入框中填写的内容是属于哪个字段的，不过该属性设置要遵循 JSON 数组格式，以 {FieldName:'xx',CssClass:'yy'} 作为一个字段的配置。另外，我们还可以用 CellItemSeparator 属性和 SumItemSeparator 属性分别为单元格内多个字段，以及汇总单元格内的多个字段添加分隔符，在外观上加以区分。</p>
+<p>  完整的代码如下：</p>
+<pre class="hljs"><code><div>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+  <span class="hljs-selector-class">.MajorTrans</span> <span class="hljs-selector-tag">input</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f3e8cb</span>;
+  }
+  <span class="hljs-selector-class">.ColSumCell</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#a6e2d4</span>;
+  }
+  <span class="hljs-selector-class">.RowSumCell</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#d4c1c1</span>;
+  }
+  <span class="hljs-selector-class">.ColHeaderCell</span> {
+    <span class="hljs-attribute">background-color</span>: red;
+  }
+  <span class="hljs-selector-class">.RowHeaderCell</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+  }
+  <span class="hljs-selector-class">.RowColSumCell</span> {
+    <span class="hljs-attribute">background-color</span>: yellow;
+  }
+  <span class="hljs-selector-class">.CrossHeader</span> {
+    <span class="hljs-attribute">background-color</span>: blue;
+  }
+  <span class="hljs-selector-class">.Cell</span> {
+    <span class="hljs-attribute">background-color</span>: gray;
+  }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
+    <span class="hljs-attr">ID</span>=<span class="hljs-string">"DDC1"</span> <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"SimpleListStyle form-inline table table-striped table-bordered table-hover"</span>
+    <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
+    <span class="hljs-attr">ColumnFieldNames</span>=<span class="hljs-string">"Gender"</span>
+    <span class="hljs-attr">CellFieldNames</span>=<span class="hljs-string">"StudentCount,MajorTransCount"</span>
+    <span class="hljs-attr">AlwaysEditMode</span>=<span class="hljs-string">"True"</span>
+    <span class="hljs-attr">DefaultPageSize</span>=<span class="hljs-string">"100"</span>
+    <span class="hljs-attr">CellCommandButtonSetting</span>=<span class="hljs-string">"[{CommandName:'ListDelete',Text:'删除',CssClass:'fa fa-close',Prompt:'删除数据后无法恢复，是否执行删除？'}]"</span>
+    <span class="hljs-attr">CrossHeaderText</span>=<span class="hljs-string">"学院专业班级/性别"</span>
+    <span class="hljs-attr">ColumnSumHeaderText</span>=<span class="hljs-string">"汇总"</span>
+    <span class="hljs-attr">RowSumHeaderText</span>=<span class="hljs-string">"汇总"</span>
+    <span class="hljs-attr">ColumnSumCellCssClass</span>=<span class="hljs-string">"ColSumCell"</span>
+    <span class="hljs-attr">RowSumCellCssClass</span>=<span class="hljs-string">"RowSumCell"</span>
+    <span class="hljs-attr">ColumnHeaderCssClass</span>=<span class="hljs-string">"ColHeaderCell"</span>
+    <span class="hljs-attr">RowHeaderCssClass</span>=<span class="hljs-string">"RowHeaderCell"</span>
+    <span class="hljs-attr">RowColSumCellCssClass</span>=<span class="hljs-string">"RowColSumCell"</span>
+    <span class="hljs-attr">CrossHeaderCssClass</span>=<span class="hljs-string">"CrossHeader"</span>
+    <span class="hljs-attr">CellCssClass</span>=<span class="hljs-string">"Cell"</span>
+    <span class="hljs-attr">CellItemCssClassSetting</span>=<span class="hljs-string">"[{FieldName:'MajorTransCount',CssClass:'MajorTrans'}]"</span>
+    <span class="hljs-attr">CellItemSeparator</span>=<span class="hljs-string">"／"</span>
+    <span class="hljs-attr">SumItemSeparator</span>=<span class="hljs-string">"／"</span>
+    <span class="hljs-attr">EnableSummary</span>=<span class="hljs-string">"True"</span>
+/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span> <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DCT1"</span> <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"保存"</span> <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary"</span>/&gt;</span>
+</div></code></pre>
+<p>  大家也注意到了 EnableSummary 属性，通过将这个属性设置为 False 可以关闭汇总功能。</p>
+<hr>
+<p>  © eIvy Framework 2019.</p>
+
+</body>
+</html>
