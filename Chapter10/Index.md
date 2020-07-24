@@ -18,5 +18,7 @@
 
 ### &emsp;&emsp;[工具栏配置](Sec07.html)
 
+### &emsp;&emsp;[模板表达式](Expression.html)
+
 ---
 &emsp; &copy; eIvy Framework 2019.

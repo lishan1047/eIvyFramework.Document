@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CommandButton.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../../README.html">返回目录</a></h1>
+<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E9%A1%B5%E9%9D%A2%E6%A0%87%E7%AD%BE---commandbutton"><a href="../Index.html">技术参考</a> - <a href="../Page.html">页面标签</a> - COMMANDBUTTON</h2>
+<p>  命令按钮（Command Button）：非常重要的、执行命令的界面元素，一般表现为按钮形态，且被解析成 Html 的 a 标签。</p>
+<h3 id="%E6%A0%87%E7%AD%BE%E8%AF%AD%E6%B3%95">标签语法</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>/&gt;</span>
+</div></code></pre>
+<p>  放在页面模板中的命令标签，一定要配置 DynamicDataControlID 属性。除此之外，必需配置的属性包括：CommandName 命令名称、Text 命令按钮文本。</p>
+<p>  命令按钮的外观属性只有一个：CssClass，即类样式。常用的样式遵循 Bootstrap 的规范，例如：btn btn-default 表示默认按钮样式、btn btn-primary 主按钮样式、btn btn-info 信息按钮样式、btn btn-warning 警告按钮样式等，具体的参考 Bootstrap 的按钮样式。另外，通过这个属性还可以配置出字体图标（有关于字体图标内容请在必应上搜索 FontAwesome），例如：btn btn-primary fa fa-info，可以配置出如下图所示的按钮：</p>
+<p><img src="../Image/2020072401.png"></img></p>
+<p>图 1 带有字体图标样式的按钮</p>
+<p>  其配置代码如下：</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">...</span>
+    <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary fa fa-info"</span>
+    <span class="hljs-attr">Text</span>=<span class="hljs-string">" 保存"</span>
+    <span class="hljs-attr">...</span>
+/&gt;</span>
+</div></code></pre>
+<p>  命令按钮最重要的还是它的行为属性，而其中最重要的就是 CommandName 属性。该属性指示命令按钮执行框架提供的业务逻辑，例如：ListEditSave 列表编辑数据保存、NewNavigate 新增数据页导航、FormSave 表单数据保存等等。如果要查看所有的命令，请浏览 <a href="../Command.html">命令参考</a>。</p>
+<p>  除此之外就是前置数据库脚本、后置数据库脚本有关的配置属性了，关于这个问题请浏览 <a href="CommandButtonSqlScript.html">命令按钮的前置与后置数据库脚本</a>。</p>
+<p>  命令按钮还有一些行为属性也是非常有用的，例如：Prompt 命令执行询问提示、NavigateUrl 命令导航、SuccessMessage 命令执行成功消息、IgnoreSuccessMessage 是否忽略成功消息、IgnoreRawUrlOnNavigating 是否在导航时忽略原始Url、IndicatorName 指示器名称、FunctionName 功能名称、RaiseDataBindDataControlIds 引发数据绑定的数据控件ID、RaiseDataSaveDataControlIds 引发数据保存的数据控件ID。</p>
+<p>  如果配置了 Prompt 属性，则在点击按钮的时候，会弹出一个询问窗口，确认是否执行该命令，在该窗口上有一段询问提示文字，就是 Prompt 属性的配置值。效果和代码如下所示：</p>
+<p><img src="../Image/2020072402.png"></img></p>
+<p>图 2 配置了 Prompt 属性的命令按钮执行询问提示效果</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DDC1"</span>
+    <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span>
+    <span class="hljs-attr">Text</span>=<span class="hljs-string">" 保存"</span>
+    <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary fa fa-info"</span>
+    <span class="hljs-attr">Prompt</span>=<span class="hljs-string">"是否执行保存？"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  如果配置了 NavigateUrl 属性，则在命令执行之后会按照属性指定的地址进行页面跳转。在配置该属性的时候要注意：一律采用 ~/ 方式的相对页面地址写法；在页面中的命令按钮是无法使用动态数据控件属性表达式、字段引用表达式作为地址栏参数取值的，但可以用命令控件与页面属性表达式作为地址栏参数取值。例如：下面的配置会在导航地址中带上当前页面地址中的 ThemeID 参数进行跳转，那么在跳转之后的 ~/Students/List 页面上会带上 ThemeID 这个参数。有关更多的表达式语法，参见 <a href="../../Chapter10/Expression.html">模板表达式</a>。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DDC1"</span>
+    <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span>
+    <span class="hljs-attr">Text</span>=<span class="hljs-string">" 保存"</span>
+    <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary fa fa-info"</span>
+    <span class="hljs-attr">Prompt</span>=<span class="hljs-string">"是否执行保存？"</span>
+    <span class="hljs-attr">NavigateUrl</span>=<span class="hljs-string">"~/Student/List?ThemeID=(@Request[ThemeID])"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  如果配置了 IgnoreRawUrlOnNavigating 属性为 True，则在页面跳转的时候不会带上 Source 当前原始地址信息作为参数。命令按钮在进行页面跳转的时候默认会将当前页面的地址作为 Source 参数带到跳转页面，以便于配置了 Return 命令的按钮进行页面返回跳转。但配置了该属性为 True 之后，就不会带上 Source 参数了。</p>
+<p>  如果配置了 SuccessMessage 属性，会在命令执行成功之后弹出框提示命令成功执行了，其中弹出框中有一段文字，就是该属性的配置值。如果命令本身就有成功提示（如 ListEditSave 命令），那么配置了该属性之后，会取代命令自身的提示信息。效果和代码如下所示：</p>
+<p><img src="../Image/2020072403.png"></img></p>
+<p>图 3 配置了 SuccessMessage 属性的执行效果</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DDC1"</span>
+    <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span>
+    <span class="hljs-attr">Text</span>=<span class="hljs-string">" 保存"</span>
+    <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary fa fa-info"</span>
+    <span class="hljs-attr">Prompt</span>=<span class="hljs-string">"是否执行保存？"</span>
+    <span class="hljs-attr">SuccessMessage</span>=<span class="hljs-string">"数据保存成功。"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  如果配置了 IgnoreSuccessMessage 属性为 True，则在命令执行成功后不会弹出消息框。这在命令进行页面跳转的时候，减少了用户操作的步骤，特别是命令本身自带了成功消息，但是又不想显示的情况下是非常有用的。</p>
+<p>  如果配置了 IndicatorName 属性，则命令按钮会按照指示器的逻辑进行隐藏与显示。有关更多指示器的内容，请参考 <a href="Indicator.html">命令指示器</a>。</p>
+<p>  如果配置了 FunctionName 属性，则命令按钮在执行之前会检查功能权限。建议大家配置该属性，以保证系统的安全。有关于更多功能权限的内容，请参考 <a href="../../Chapter05/Function.html">功能权限</a>。</p>
+<p>  如果配置了 RaiseDataBindDataControlIds 属性，则命令执行完成后会引发指定的动态数据控件进行数据绑定操作。如果要多个动态数据控件都进行数据绑定，则将控件 ID 用逗号分隔。这一属性在页面有多张表格数据进行操作的时候，需要联动执行数据绑定很有用。有关更多动态数据控件的数据绑定内容，请参考 <a href="DynamicList.html">动态数据控件</a>。</p>
+<p>  如果配置了 RaiseDataSaveDataControlIds 属性，则命令执行完成后会引发指定的动态数据控件进行数据保存操作。如果要多个动态数据控件都进行数据保存，则将控件 ID 用逗号分隔。这一属性在页面有多张表格数据要进行同时保存的时候非常有用。例如：Address 表记录了某个联系人（Contacts 表）的联系地址，我们把 Contacts 表和 Address 表放在一个页面进行操作，并且为 Contacts 表配置了用于保存数据的命令按钮，当用户点击保存按钮的时候，默认只会保存对 Contacts 表的操作，而 Address 表的数据是不会被保存的。但我们为保存命令按钮配置该属性，并指明 Address 表的动态数据控件 ID，此时保存按钮就同时会保存针对两张表的操作了。这样不至于为两张表分别提供两个保存按钮，对于用户来说，具有了更好的操作体验。</p>
+<p>  除了上述行为属性之外，还有专门为命令进行配置的属性 CommandPropertySetting，该属性以 JSON 格式为命令的属性进行设置，例如：ListEditSave 命令本身具有 SuccessMessage 属性，如果想取消该属性设置，则通过以下代码可以实现：</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DDC1"</span>
+    <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span>
+    <span class="hljs-attr">Text</span>=<span class="hljs-string">" 保存"</span>
+    <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary fa fa-info"</span>
+    <span class="hljs-attr">Prompt</span>=<span class="hljs-string">"是否执行保存？"</span>
+    <span class="hljs-attr">CommandPropertySetting</span>=<span class="hljs-string">"{SuccessMessage:''}"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  上述代码中通过将 SuccessMessage 置为空字符串，可以取消命令默认的该属性值。有关于命令究竟有哪些属性，请参见 <a href="../Command.html">命令参考</a>。</p>
+<hr>
+<p>  © eIvy Framework 2019.</p>
+
+</body>
+</html>

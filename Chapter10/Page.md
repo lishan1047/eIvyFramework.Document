@@ -12,7 +12,7 @@
 
 ### &emsp;&emsp;[DYNAMICCROSSTABLE，动态交叉表](Page/DynamicCrossTable.html)  
 
-### &emsp;&emsp;[COMMANDBUTTON，命令按钮](Sec03/Sec0310.html)  
+### &emsp;&emsp;[COMMANDBUTTON，命令按钮](Page/CommandButton.html)  
 
 ---
 &emsp; &copy; eIvy Framework 2019.

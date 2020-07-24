@@ -138,5 +138,7 @@
 
 ### &emsp;&emsp;[工具栏配置](Chapter10/Sec07.html)
 
+### &emsp;&emsp;[模板表达式](Chapter10/Expression.html)
+
 ---
 &emsp; &copy; eIvy Framework 2019.

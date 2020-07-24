@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page.md</title>
+<title>Expression.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -366,13 +366,91 @@ code {
     });
   </script>
 <h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../README.html">返回目录</a></h1>
-<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E9%A1%B5%E9%9D%A2%E6%A0%87%E7%AD%BE"><a href="Index.html">技术参考</a> - 页面标签</h2>
-<p>这里列出了 eIvy Framework 常用页面标签，以供参考。</p>
-<h3 id="dynamiclist%E5%8A%A8%E6%80%81%E5%88%97%E8%A1%A8">  <a href="Sec01.html">DYNAMICLIST，动态列表</a></h3>
-<h3 id="dynamicform%E5%8A%A8%E6%80%81%E8%A1%A8%E5%8D%95">  <a href="Sec02.html">DYNAMICFORM，动态表单</a></h3>
-<h3 id="dynamicpivot%E5%8A%A8%E6%80%81%E8%BD%AC%E7%BD%AE%E8%A1%A8">  <a href="Sec03.html">DYNAMICPIVOT，动态转置表</a></h3>
-<h3 id="dynamiccrosstable%E5%8A%A8%E6%80%81%E4%BA%A4%E5%8F%89%E8%A1%A8">  <a href="Page/DynamicCrossTable.html">DYNAMICCROSSTABLE，动态交叉表</a></h3>
-<h3 id="commandbutton%E5%91%BD%E4%BB%A4%E6%8C%89%E9%92%AE">  <a href="Page/CommandButton.html">COMMANDBUTTON，命令按钮</a></h3>
+<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E6%A8%A1%E6%9D%BF%E8%A1%A8%E8%BE%BE%E5%BC%8F"><a href="Index.html">技术参考</a> - 模板表达式</h2>
+<p>  模板表达式：在页面、视图、页块、母版页的模板中，可以用来进行特定计算的表达式。主要有：属性表达式、字段引用表达式。而属性表达式又可分为页面属性表达式、动态数据控件属性表达式、命令按钮控件属性表达式、数据库脚本参数表达式。</p>
+<h3 id="%E9%A1%B5%E9%9D%A2%E5%B1%9E%E6%80%A7%E8%A1%A8%E8%BE%BE%E5%BC%8F"><strong>页面属性表达式</strong></h3>
+<p>  页面属性表达式可以写在任何模板中，其表达式语法格式如下：</p>
+<pre class="hljs"><code><div>(@属性路径)
+</div></code></pre>
+<ul>
+<li>
+<p>一对圆括号是表达式界定符。</p>
+</li>
+<li>
+<p>属性路径是指从页面对象出发不断用属性访问符号 . 递推出来的一串属性，例如：@User.Identity.Name，由于 User 是页面对象的属性，Identity 又是 User 对象的属性，Name 则是 Identity 对象的属性，因而通过这种属性路径最终得到的属性是 Name，即登录用户的名称。常见的页面属性路径参见 <a href="CommonProperty.html">常见属性表达式</a>。</p>
+</li>
+</ul>
+<p>  下面的例子向我们展示了从页面属性 Now 中获得当前年份。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+Copyright (@Now.Year)
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>  如果属性表达式写在了 XML 标签属性中，且标签属性就是整个属性表达式，则表达式界定符-圆括号可以省略不写。下面例子通过页面的 Title 属性将命令按钮的文本设置成了当前页面的标题。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"@Title"</span> <span class="hljs-attr">...</span>&gt;</span>
+</div></code></pre>
+<p>  如果属性是集合类型，或者是索引器，那么可以用一对中括号 + 索引号，或者中括号 + 索引键获取特定属性值。下面的例子就是利用页面索引属性 Request 将当前页面地址栏参数 ClassID 作为跳转页面的地址栏参数。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"~/Students/List?ClassID=(@Request[ClassID])"</span>&gt;</span>班级名单<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+<h3 id="%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%8E%A7%E4%BB%B6%E5%B1%9E%E6%80%A7%E8%A1%A8%E8%BE%BE%E5%BC%8F"><strong>动态数据控件属性表达式</strong></h3>
+<p>  这个和页面属性表达式语法完全一致，只是：用在视图模板中；且属性路径是从动态数据控件出发的。下面例子展示了在视图模板中将动态数据控件的 CssClass 属性作为表格的 class。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"@CssClass"</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</div></code></pre>
+<h3 id="%E5%91%BD%E4%BB%A4%E6%8C%89%E9%92%AE%E6%8E%A7%E4%BB%B6%E5%B1%9E%E6%80%A7%E8%A1%A8%E8%BE%BE%E5%BC%8F"><strong>命令按钮控件属性表达式</strong></h3>
+<p>  其语法格式如下：</p>
+<pre class="hljs"><code><div>{this.属性路径.@参数名}
+</div></code></pre>
+<ul>
+<li>
+<p>属性路径是从命令按钮控件出发的。</p>
+</li>
+<li>
+<p>this 代表了命令按钮，可以省略。</p>
+</li>
+<li>
+<p>只能写在命令按钮的属性配置中。</p>
+</li>
+<li>
+<p>参数名是数据库脚本的传入参数，如果不是配置在前置与后置数据库脚本参数属性（PreSqlScriptParameters、PostSqlScriptParameters），则该参数名被忽略，但不能省略。</p>
+</li>
+</ul>
+<p>  下面的例子向我们展示了如何利用命令按钮控件属性 this.SecurityContext.LoginUserMapping.EntityID 为命令按钮的前置数据库脚本参数 @EntityID 传递了登录用户的映射实体ID（关于映射实体参见 <a href="../Chapter05/Account.html">账号管理</a>）。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">...</span>
+    <span class="hljs-attr">PreSqlScriptParameters</span>=<span class="hljs-string">"{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  下面的例子则通过命令按钮控件属性 PreSqlScriptOutputParameters 获得前置数据库脚本执行后传出参数 @ID 的值，并作为页面跳转的地址栏参数。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span>
+    <span class="hljs-attr">...</span>
+    <span class="hljs-attr">NavigateUrl</span>=<span class="hljs-string">"~/Students/DispForm?ID={this.PreSqlScriptOutputParameters[ID].@ID}"</span>
+/&gt;</span>
+</div></code></pre>
+<h3 id="%E5%AD%97%E6%AE%B5%E5%BC%95%E7%94%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F"><strong>字段引用表达式</strong></h3>
+<p>  字段引用表达式用于为字段值在模板中提供占位符。其语法如下：</p>
+<pre class="hljs"><code><div>{@字段名,选项}
+</div></code></pre>
+<ul>
+<li>
+<p>一对花括号为表达式界定符。</p>
+</li>
+<li>
+<p>只能用在 List 型动态数据控件视图模板的 eIvy:ROWREPEATOR 标签之内，Form 型视图模板则可以是任何位置，不能用于页面、页块、母版页模板中。</p>
+</li>
+<li>
+<p>选项一般情况下可以省略，但可以写 TEXT 表示输出字段的显示文本。</p>
+</li>
+</ul>
+<p>  下面的例子展示了利用字段 ID 值作为导航地址栏参数。</p>
+<pre class="hljs"><code><div>...
+<span class="hljs-tag">&lt;<span class="hljs-name">eIvy:ROWREPEATOR</span>&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"~/Students/DispForm?ID={@ID}"</span>&gt;</span>详情<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">eIvy:ROWREPEATOR</span>&gt;</span>
+...
+</div></code></pre>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 
