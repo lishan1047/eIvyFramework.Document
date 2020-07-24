@@ -4,7 +4,7 @@
 
 本章介绍 eIvy Framework 的数据库操作。  
 
-### &emsp;&emsp;[数据库基本配置](Sec01.html)
+### &emsp;&emsp;[数据库基本配置](DatabaseConfig.html)
 
 ### &emsp;&emsp;[表格创建](Sec02.html)
 

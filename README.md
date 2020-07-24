@@ -26,25 +26,25 @@
 
 ## [概述](Chapter01/Index.html)
 
-### &emsp;&emsp;[初衷](Chapter01/Sec01.html)
+### &emsp;&emsp;[初衷](Chapter01/Idea.html)
 
-### &emsp;&emsp;[基本思路](Chapter01/Sec02.html)
+### &emsp;&emsp;[基本思路](Chapter01/BasicSolution.html)
 
-### &emsp;&emsp;[核心概念](Chapter01/Sec03.html)  
+### &emsp;&emsp;[核心概念](Chapter01/CoreConcepts.html)  
 
 ## [安装](Chapter02/Index.html)
 
-### &emsp;&emsp;[环境准备](Chapter02/Sec01.html)
+### &emsp;&emsp;[环境准备](Chapter02/Prepare.html)
 
-### &emsp;&emsp;[不同版本](Chapter02/Sec02.html)
+### &emsp;&emsp;[不同版本](Chapter02/Version.html)
 
-### &emsp;&emsp;[手动安装](Chapter02/Sec03.html)
+### &emsp;&emsp;[手动安装](Chapter02/SetupByMannul.html)
 
-### &emsp;&emsp;[安装程序](Chapter02/Sec04.html)
+### &emsp;&emsp;[安装程序](Chapter02/SetupAuto.html)
 
 ## [数据库](Chapter03/Index.html)
 
-### &emsp;&emsp;[数据库基本配置](Chapter03/Sec01.html)
+### &emsp;&emsp;[数据库基本配置](Chapter03/DatabaseConfig.html)
 
 ### &emsp;&emsp;[表格创建](Chapter03/Sec02.html) - 甘
 
@@ -128,7 +128,7 @@
 
 ### &emsp;&emsp;[视图标签](Chapter10/Sec02.html)
 
-### &emsp;&emsp;[页面标签](Chapter10/Sec03.html)
+### &emsp;&emsp;[页面标签](Chapter10/Page.html)
 
 ### &emsp;&emsp;[筛选子句标签](Chapter10/Sec04.html)
 

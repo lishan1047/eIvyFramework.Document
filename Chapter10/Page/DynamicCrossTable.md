@@ -1,6 +1,6 @@
 # [返回目录](../../README.html)
 
-## [技术参考](../Index.html) - [页面标签](../Sec03.html) - DYNAMICCROSSTABLE
+## [技术参考](../Index.html) - [页面标签](../Page.html) - DYNAMICCROSSTABLE
 
 &emsp;&emsp;动态交叉表（Dynamic Cross Table）：继承了 DYNAMICLIST 所有特性，但是以交叉表的方式呈现数据，而且与 DYNAMICPIVOT 相比，具有数据编辑的功能。  
 
@@ -76,6 +76,8 @@
 
 图 2 交叉表显示效果  
 
+&emsp;&emsp;我们注意到学院、专业、班级、性别这些行列字段并没有因为 AlwaysEditMode 属性被设置为 True，而处于编辑状态，即使在视图中将这些字段设置为可修改和新增，仍然如此。因此，要意识到一旦字段被当作行列字段，就失去了编辑功能。  
+
 &emsp;&emsp;对于交叉表同样可以采用分页控件进行数据分页呈现，但合计数据只会根据当前页的数据进行汇总。因此，一般情况下我们为了能够显示并合计完整的数据，需要将 DefaultPageSize 属性设置到足够大，以便于交叉表提取到完整的数据。  
 
 &emsp;&emsp;由于交叉表与列表的呈现格式完全不同，因而视图模板在交叉表中会被忽略，因此当你尝试去编辑视图模板获得不一样的界面效果，这一操作是无效的。  
@@ -128,11 +130,11 @@
     CrossHeaderText="学院专业班级/性别"
     ColumnSumHeaderText="汇总"
     RowSumHeaderText="汇总"
-    ColumnSumCellCssClass="ColSumCell"
-    RowSumCellCssClass="RowSumCell"
+    ColumnSumCssClass="ColSumCell"
+    RowSumCssClass="RowSumCell"
+    RowColSumCssClass="RowColSumCell"
     ColumnHeaderCssClass="ColHeaderCell"
     RowHeaderCssClass="RowHeaderCell"
-    RowColSumCellCssClass="RowColSumCell"
     CrossHeaderCssClass="CrossHeader"
     CellCssClass="Cell"
     CellItemCssClassSetting="[{FieldName:'MajorTransCount',CssClass:'MajorTrans'}]"

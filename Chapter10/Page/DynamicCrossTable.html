@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sec0304.md</title>
+<title>DynamicCrossTable.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -366,7 +366,7 @@ code {
     });
   </script>
 <h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../../README.html">返回目录</a></h1>
-<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E9%A1%B5%E9%9D%A2%E6%A0%87%E7%AD%BE---dynamiccrosstable"><a href="../Index.html">技术参考</a> - <a href="../Sec03.html">页面标签</a> - DYNAMICCROSSTABLE</h2>
+<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E9%A1%B5%E9%9D%A2%E6%A0%87%E7%AD%BE---dynamiccrosstable"><a href="../Index.html">技术参考</a> - <a href="../Page.html">页面标签</a> - DYNAMICCROSSTABLE</h2>
 <p>  动态交叉表（Dynamic Cross Table）：继承了 DYNAMICLIST 所有特性，但是以交叉表的方式呈现数据，而且与 DYNAMICPIVOT 相比，具有数据编辑的功能。</p>
 <h3 id="%E6%A0%87%E7%AD%BE%E8%AF%AD%E6%B3%95">标签语法</h3>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>/&gt;</span>
@@ -527,6 +527,7 @@ code {
 </div></code></pre>
 <p><img src="../Image/2020072301.png"></img></p>
 <p>图 2 交叉表显示效果</p>
+<p>  我们注意到学院、专业、班级、性别这些行列字段并没有因为 AlwaysEditMode 属性被设置为 True，而处于编辑状态，即使在视图中将这些字段设置为可修改和新增，仍然如此。因此，要意识到一旦字段被当作行列字段，就失去了编辑功能。</p>
 <p>  对于交叉表同样可以采用分页控件进行数据分页呈现，但合计数据只会根据当前页的数据进行汇总。因此，一般情况下我们为了能够显示并合计完整的数据，需要将 DefaultPageSize 属性设置到足够大，以便于交叉表提取到完整的数据。</p>
 <p>  由于交叉表与列表的呈现格式完全不同，因而视图模板在交叉表中会被忽略，因此当你尝试去编辑视图模板获得不一样的界面效果，这一操作是无效的。</p>
 <p>  交叉表还提供了一组高度定制化的样式与外观属性，通过下图大家可以了解这些属性所设置交叉表的对应关系。</p>
@@ -571,11 +572,11 @@ code {
     <span class="hljs-attr">CrossHeaderText</span>=<span class="hljs-string">"学院专业班级/性别"</span>
     <span class="hljs-attr">ColumnSumHeaderText</span>=<span class="hljs-string">"汇总"</span>
     <span class="hljs-attr">RowSumHeaderText</span>=<span class="hljs-string">"汇总"</span>
-    <span class="hljs-attr">ColumnSumCellCssClass</span>=<span class="hljs-string">"ColSumCell"</span>
-    <span class="hljs-attr">RowSumCellCssClass</span>=<span class="hljs-string">"RowSumCell"</span>
+    <span class="hljs-attr">ColumnSumCssClass</span>=<span class="hljs-string">"ColSumCell"</span>
+    <span class="hljs-attr">RowSumCssClass</span>=<span class="hljs-string">"RowSumCell"</span>
+    <span class="hljs-attr">RowColSumCssClass</span>=<span class="hljs-string">"RowColSumCell"</span>
     <span class="hljs-attr">ColumnHeaderCssClass</span>=<span class="hljs-string">"ColHeaderCell"</span>
     <span class="hljs-attr">RowHeaderCssClass</span>=<span class="hljs-string">"RowHeaderCell"</span>
-    <span class="hljs-attr">RowColSumCellCssClass</span>=<span class="hljs-string">"RowColSumCell"</span>
     <span class="hljs-attr">CrossHeaderCssClass</span>=<span class="hljs-string">"CrossHeader"</span>
     <span class="hljs-attr">CellCssClass</span>=<span class="hljs-string">"Cell"</span>
     <span class="hljs-attr">CellItemCssClassSetting</span>=<span class="hljs-string">"[{FieldName:'MajorTransCount',CssClass:'MajorTrans'}]"</span>

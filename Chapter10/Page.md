@@ -10,7 +10,9 @@
 
 ### &emsp;&emsp;[DYNAMICPIVOT，动态转置表](Sec03.html)  
 
-### &emsp;&emsp;[DYNAMICCROSSTABLE，动态交叉表](Sec03/Sec0304.html)  
+### &emsp;&emsp;[DYNAMICCROSSTABLE，动态交叉表](Page/DynamicCrossTable.html)  
+
+### &emsp;&emsp;[COMMANDBUTTON，命令按钮](Sec03/Sec0310.html)  
 
 ---
 &emsp; &copy; eIvy Framework 2019.
