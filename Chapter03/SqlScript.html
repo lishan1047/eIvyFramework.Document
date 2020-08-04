@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Index.md</title>
+<title>SqlScript.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -366,21 +366,46 @@ code {
     });
   </script>
 <h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../README.html">返回目录</a></h1>
-<h2 id="%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</h2>
-<p>本章介绍 eIvy Framework 的数据库操作。</p>
-<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">  <a href="DatabaseConfig.html">数据库基本配置</a></h3>
-<h3 id="%E8%A1%A8%E6%A0%BC%E5%88%9B%E5%BB%BA">  <a href="Sec02.html">表格创建</a></h3>
-<h3 id="%E5%AD%97%E6%AE%B5%E5%88%9B%E5%BB%BA">  <a href="Sec03.html">字段创建</a></h3>
-<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%84%9A%E6%9C%AC%E5%88%9B%E5%BB%BA">  <a href="SqlScript.html">数据库脚本创建</a></h3>
-<h3 id="%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%88%9B%E5%BB%BA">  <a href="Sec05.html">存储过程创建</a></h3>
-<h3 id="%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA">  <a href="Sec06.html">用户自定义函数创建</a></h3>
-<h3 id="%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%88%9B%E5%BB%BA">  <a href="Sec07.html">消息队列创建</a></h3>
-<h3 id="%E5%AD%97%E6%AE%B5%E5%80%BC%E5%88%97%E8%A1%A8%E7%BB%B4%E6%8A%A4">  <a href="Sec08.html">字段值列表维护</a></h3>
-<h3 id="%E8%A7%A6%E5%8F%91%E5%99%A8%E5%88%9B%E5%BB%BA">  <a href="Sec09.html">触发器创建</a></h3>
-<h3 id="%E8%A1%A8%E6%A0%BC%E4%BE%A6%E5%90%AC">  <a href="Sec10.html">表格侦听</a></h3>
-<h3 id="%E5%90%AF%E7%94%A8%E7%89%88%E6%9C%AC%E8%B7%9F%E8%B8%AA">  <a href="Sec11.html">启用版本跟踪</a></h3>
-<h3 id="%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E5%99%A8">  <a href="Sec12.html">注册验证器</a></h3>
-<h3 id="%E8%B4%A6%E5%8F%B7%E6%BF%80%E6%B4%BB%E5%99%A8">  <a href="Sec13.html">账号激活器</a></h3>
+<h2 id="%E6%95%B0%E6%8D%AE%E5%BA%93---%E6%95%B0%E6%8D%AE%E5%BA%93%E8%84%9A%E6%9C%AC%E5%88%9B%E5%BB%BA"><a href="Index.html">数据库</a> - 数据库脚本创建</h2>
+<p>  数据库脚本（SQL Script）是一段 SQL，不同于存储过程，这段 SQL 在每次请求执行的时候（如：命令按钮的前置与后置数据库脚本）以动态方式执行。</p>
+<h3 id="%E5%88%9B%E5%BB%BA"><strong>创建</strong></h3>
+<p>  系统设置后台-&gt;数据库-&gt;数据库脚本-&gt;新增脚本</p>
+<p><img src="Image/2020080401.png"></img></p>
+<p>  任何合法的 SQL 语句都可以写在脚本中。</p>
+<h3 id="%E5%8F%82%E6%95%B0"><strong>参数</strong></h3>
+<p>  数据库脚本一定需要有参数，分为传入参数、传出参数。</p>
+<p>  传入参数：无需在数据库脚本中显式定义，凡是出现了 @ 标注的标识符，框架都会认定为传入参数。例如：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Contacts
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">Name</span> = @<span class="hljs-keyword">Name</span>
+</div></code></pre>
+<p>  上述脚本中 @Name 并没有通过 DECLARE 语句显式定义，但框架会将其认定为传入参数。对于所有传入参数的类型都会被认定为 sql_variant 可变类型，因此在使用的时候最好强制转换成所需的类型，例如：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Contacts
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">Name</span> = <span class="hljs-keyword">CAST</span>(@<span class="hljs-keyword">Name</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">nvarchar</span>(<span class="hljs-number">20</span>))
+</div></code></pre>
+<p>  但是一旦在脚本中写了传入参数，一定要在调用的时候给出传入参数，否则会引起脚本调用的异常。</p>
+<p>  另外，所有传入参数均被作为传出参数，因此，可以在调用方通过传入参数就能够获取传出值。</p>
+<h3 id="%E8%B0%83%E7%94%A8"><strong>调用</strong></h3>
+<p>  目前框架调用数据库脚本有三种方式：命令按钮的前置与后置数据库脚本、页面数据库脚本、数据库脚本调用一般处理程序。</p>
+<ul>
+<li>命令按钮的前置与后置脚本调用</li>
+</ul>
+<p>  通过命令按钮的前置数据库脚本 PreSqlScript 和 后置数据库脚本 PostSqlScript 进行调用，主要是通过配置相应属性。例如：</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span> 
+    <span class="hljs-attr">PreSqlScriptName</span>=<span class="hljs-string">"TEST"</span>
+    <span class="hljs-attr">PreSqlScriptParameters</span>=<span class="hljs-string">"{xx.@Name}"</span>
+/&gt;</span>
+</div></code></pre>
+<p>  上述代码为命令按钮配置了前置脚本及其传入参数 @Name。实际上框架会为脚本加上默认的 @ID、@Principal 两个参数，用于传入动态数据控件选中数据行的 ID 值和当前登录用户的身份信息。有关更多内容，参见 <a href="../Chapter10/Page/CommandButtonSqlScript.html">命令按钮的数据库脚本</a>。</p>
+<ul>
+<li>页面数据库脚本</li>
+</ul>
+<p>  数据库脚本也可以脱离命令按钮，在页面加载的时候调用，有关更多内容，参见 <a href="../Chapter10/Page/SqlScriptor.html">页面数据库脚本标签</a>。</p>
+<ul>
+<li>数据库脚本调用一般处理程序</li>
+</ul>
+<p>  通过在页面的 JS 代码中调用一般处理程序也可以执行数据库脚本，有关更多内容，参见 <a href="SqlScriptInvoker.html">通过页面脚本调用数据库脚本</a>。</p>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 

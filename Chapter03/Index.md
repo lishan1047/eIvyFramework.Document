@@ -10,7 +10,7 @@
 
 ### &emsp;&emsp;[字段创建](Sec03.html)
 
-### &emsp;&emsp;[数据库脚本创建](Sec04.html)
+### &emsp;&emsp;[数据库脚本创建](SqlScript.html)
 
 ### &emsp;&emsp;[存储过程创建](Sec05.html)
 

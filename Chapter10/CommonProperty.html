@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Index.md</title>
+<title>CommonProperty.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -366,21 +366,128 @@ code {
     });
   </script>
 <h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../README.html">返回目录</a></h1>
-<h2 id="%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</h2>
-<p>本章介绍 eIvy Framework 的数据库操作。</p>
-<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">  <a href="DatabaseConfig.html">数据库基本配置</a></h3>
-<h3 id="%E8%A1%A8%E6%A0%BC%E5%88%9B%E5%BB%BA">  <a href="Sec02.html">表格创建</a></h3>
-<h3 id="%E5%AD%97%E6%AE%B5%E5%88%9B%E5%BB%BA">  <a href="Sec03.html">字段创建</a></h3>
-<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%84%9A%E6%9C%AC%E5%88%9B%E5%BB%BA">  <a href="SqlScript.html">数据库脚本创建</a></h3>
-<h3 id="%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%88%9B%E5%BB%BA">  <a href="Sec05.html">存储过程创建</a></h3>
-<h3 id="%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA">  <a href="Sec06.html">用户自定义函数创建</a></h3>
-<h3 id="%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%88%9B%E5%BB%BA">  <a href="Sec07.html">消息队列创建</a></h3>
-<h3 id="%E5%AD%97%E6%AE%B5%E5%80%BC%E5%88%97%E8%A1%A8%E7%BB%B4%E6%8A%A4">  <a href="Sec08.html">字段值列表维护</a></h3>
-<h3 id="%E8%A7%A6%E5%8F%91%E5%99%A8%E5%88%9B%E5%BB%BA">  <a href="Sec09.html">触发器创建</a></h3>
-<h3 id="%E8%A1%A8%E6%A0%BC%E4%BE%A6%E5%90%AC">  <a href="Sec10.html">表格侦听</a></h3>
-<h3 id="%E5%90%AF%E7%94%A8%E7%89%88%E6%9C%AC%E8%B7%9F%E8%B8%AA">  <a href="Sec11.html">启用版本跟踪</a></h3>
-<h3 id="%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E5%99%A8">  <a href="Sec12.html">注册验证器</a></h3>
-<h3 id="%E8%B4%A6%E5%8F%B7%E6%BF%80%E6%B4%BB%E5%99%A8">  <a href="Sec13.html">账号激活器</a></h3>
+<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E6%A8%A1%E6%9D%BF%E8%A1%A8%E8%BE%BE%E5%BC%8F---%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7%E8%A1%A8%E8%BE%BE%E5%BC%8F"><a href="Index.html">技术参考</a> - <a href="Expression.html">模板表达式</a> - 常见属性表达式</h2>
+<p>  下表列出了常见属性表达式。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>动态数据控件属性表达式</th>
+<th>页面属性表达式</th>
+<th>命令按钮属性表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SecurityContext.LoginUserMapping.EntityID<br/>获得当前登录用户的对应实体ID</td>
+<td>(@SecurityContext.LoginUserMapping.EntityID)</td>
+<td>(@SecurityContext.LoginUserMapping.EntityID)</td>
+<td>SecurityContext.LoginUserMapping.EntityID</td>
+</tr>
+<tr>
+<td>SecurityContext.LoginUser.Identity.Name<br/>获得当前登录用户名</td>
+<td>(@SecurityContext.LoginUser.Identity.Name)</td>
+<td>(@SecurityContext.LoginUser.Identity.Name)</td>
+<td>SecurityContext.LoginUser.Identity.Name</td>
+</tr>
+<tr>
+<td>SecurityContext.LoginUserDisplayName<br/>获得当前登录用户的显示名称</td>
+<td>(@SecurityContext.LoginUserDisplayName)</td>
+<td>(@SecurityContext.LoginUserDisplayName)</td>
+<td>SecurityContext.LoginUserDisplayName</td>
+</tr>
+<tr>
+<td>SecurityContext.LoginRole<br/>获得当前登录用户的角色（一次装载一个角色）</td>
+<td>(@SecurityContext.LoginRole)</td>
+<td>(@SecurityContext.LoginRole)</td>
+<td>SecurityContext.LoginRole</td>
+</tr>
+<tr>
+<td>Now<br/>获得当前服务器时间</td>
+<td>(@Now)</td>
+<td>(@Now)</td>
+<td>Now</td>
+</tr>
+<tr>
+<td>Now.Year<br/>获得当前服务器时间的年份</td>
+<td>(@Now.Year)</td>
+<td>(@Now.Year)</td>
+<td>Now.Year</td>
+</tr>
+<tr>
+<td>Now.Month<br/>获得当前服务器时间的月份</td>
+<td>(@Now.Month)</td>
+<td>(@Now.Month)</td>
+<td>Now.Month</td>
+</tr>
+<tr>
+<td>Now.Day<br/>获得当前服务器时间的日期</td>
+<td>(@Now.Day)</td>
+<td>(@Now.Day)</td>
+<td>Now.Day</td>
+</tr>
+<tr>
+<td>Now.Date<br/>获得当前服务器时间的日期部分</td>
+<td>(@Now.Date)</td>
+<td>(@Now.Date)</td>
+<td>Now.Date</td>
+</tr>
+<tr>
+<td>CssClass<br/>获得类样式</td>
+<td>(@CssClass)</td>
+<td>(@CssClass)</td>
+<td>CssClass</td>
+</tr>
+<tr>
+<td>Style<br/>内联样式</td>
+<td>(@Style)</td>
+<td>(@Style)</td>
+<td>Style</td>
+</tr>
+<tr>
+<td>Visible<br/>可见性</td>
+<td>(@Visible)</td>
+<td>(@Visible)</td>
+<td>Visible</td>
+</tr>
+<tr>
+<td>UserProfile.LastLoginRole<br/>当前登录用户最后一次登录的角色</td>
+<td>(@UserProfile.LastLoginRole)</td>
+<td>(@UserProfile.LastLoginRole)</td>
+<td>UserProfile.LastLoginRole</td>
+</tr>
+<tr>
+<td>ForceChangingPassword<br/>当前登录用户是否要强制修改密码</td>
+<td>(@ForceChangingPassword)</td>
+<td>(@ForceChangingPassword)</td>
+<td>ForceChangingPassword</td>
+</tr>
+<tr>
+<td>EncodedRawUrl<br/>当前页面经过编码的Url</td>
+<td>(@Page.EncodedRawUrl)</td>
+<td>(@EncodedRawUrl)</td>
+<td>Page.EncodedRawUrl</td>
+</tr>
+<tr>
+<td>Request[XX]<br/>当前页面地址栏参数值</td>
+<td>(@Request[XX])</td>
+<td>(@Request[XX])</td>
+<td>Request[XX]</td>
+</tr>
+<tr>
+<td>PreSqlScriptOutputParameters<br/>前置脚本输出参数</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>PreSqlScriptOutputParameters[XX].Value</td>
+</tr>
+<tr>
+<td>PostSqlScriptOutputParameters<br/>后置脚本输出参数</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>PostSqlScriptOutputParameters[XX].Value</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 

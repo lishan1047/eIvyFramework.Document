@@ -161,5 +161,46 @@
 
 &emsp;&emsp;上述代码中通过在属性 CellCommandButtonSetting 中增加了一个命令的方式，为单元格数据项添加了一个导航到详情页的操作菜单。这种配置其实如同是在视图模板中为命令按钮配置属性一样，大家也注意到了 {@ID} 这种字段引用占位符的用法和视图模板中完全一致。
 
+&emsp;&emsp;该标签还提供了汇总客户端回调方法，即通过配置 SumClientCallbak 属性可以实现交叉表在生成或者重新计算汇总值的过程中执行一段自己 JS 代码的逻辑。例如：我们想检验一下自己输入的数据汇总结果是否超出某个范围，通过下面的代码可以实现：
+
+```xml
+<eIvy:DYNAMICCROSSTABLE
+    ID="DDC1" CssClass="SimpleListStyle form-inline table table-striped table-bordered table-hover"
+    RowFieldNames="School,Major,Class"
+    ColumnFieldNames="Gender"
+    CellFieldNames="StudentCount"
+    AlwaysEditMode="True"
+    DefaultPageSize="100"
+    CellCommandButtonSetting="[{CommandName:'ListDelete',Text:'删除',CssClass:'fa fa-close',Prompt:'删除数据后无法恢复，是否执行删除？'}]"
+    CrossHeaderText="学院专业班级/性别"
+    SumClientCallback="CheckStudentCount"
+/>
+<script>
+function CheckStudentCount(param) {
+  if(param.fname == "StudentCount" && param.dir == "cross") {
+    if(param.val <= 0) {
+      alert("输入学生总人数不能小于等于 0！");
+    }
+  }
+}
+</script>
+```
+
+&emsp;&emsp;关键在于回调方法参数为一个 JSON 对象：
+
+```josn
+{
+    fname: 'xx'                 // 汇总字段名
+    dir: 'column'|'row'|'cross' // 汇总方向：column 纵列方向、row 横行方向、cross 交叉汇总
+    val: 80                     // 汇总值
+}
+```
+
+&emsp;&emsp;由于交叉表在每生成一个汇总数据的时候就会调用一次由 SumClientCallback 指定的 JS 方法，所以我们要搞清楚是针对什么汇总数据进行检验的，上述例子是针对 StudentCount 字段的交叉汇总值进行检验，所以通过 param.fname == "StudentCount" && param.dir == "cross" 这个条件式来判断的。
+
+&emsp;&emsp;当我们单元格字段处于编辑状态，一旦输入值发生变化之后，也会引起重新计算该汇总字段的汇总数据，从而也就引发回调方法。因此，该回调方法也能够响应汇总数据的重新计算过程。
+
+&emsp;&emsp;另外，SumClientCallback 这个属性设置在 EnableSummary 属性设置为 True 的时候才会有效。
+
 ---
 &emsp; &copy; eIvy Framework 2019.

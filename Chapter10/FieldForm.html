@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Index.md</title>
+<title>FieldForm.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -366,21 +366,16 @@ code {
     });
   </script>
 <h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../README.html">返回目录</a></h1>
-<h2 id="%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</h2>
-<p>本章介绍 eIvy Framework 的数据库操作。</p>
-<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">  <a href="DatabaseConfig.html">数据库基本配置</a></h3>
-<h3 id="%E8%A1%A8%E6%A0%BC%E5%88%9B%E5%BB%BA">  <a href="Sec02.html">表格创建</a></h3>
-<h3 id="%E5%AD%97%E6%AE%B5%E5%88%9B%E5%BB%BA">  <a href="Sec03.html">字段创建</a></h3>
-<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%84%9A%E6%9C%AC%E5%88%9B%E5%BB%BA">  <a href="SqlScript.html">数据库脚本创建</a></h3>
-<h3 id="%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%88%9B%E5%BB%BA">  <a href="Sec05.html">存储过程创建</a></h3>
-<h3 id="%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA">  <a href="Sec06.html">用户自定义函数创建</a></h3>
-<h3 id="%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%88%9B%E5%BB%BA">  <a href="Sec07.html">消息队列创建</a></h3>
-<h3 id="%E5%AD%97%E6%AE%B5%E5%80%BC%E5%88%97%E8%A1%A8%E7%BB%B4%E6%8A%A4">  <a href="Sec08.html">字段值列表维护</a></h3>
-<h3 id="%E8%A7%A6%E5%8F%91%E5%99%A8%E5%88%9B%E5%BB%BA">  <a href="Sec09.html">触发器创建</a></h3>
-<h3 id="%E8%A1%A8%E6%A0%BC%E4%BE%A6%E5%90%AC">  <a href="Sec10.html">表格侦听</a></h3>
-<h3 id="%E5%90%AF%E7%94%A8%E7%89%88%E6%9C%AC%E8%B7%9F%E8%B8%AA">  <a href="Sec11.html">启用版本跟踪</a></h3>
-<h3 id="%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E5%99%A8">  <a href="Sec12.html">注册验证器</a></h3>
-<h3 id="%E8%B4%A6%E5%8F%B7%E6%BF%80%E6%B4%BB%E5%99%A8">  <a href="Sec13.html">账号激活器</a></h3>
+<h2 id="%E6%8A%80%E6%9C%AF%E5%8F%82%E8%80%83---%E5%AD%97%E6%AE%B5%E5%9E%8Bfield-form"><a href="Index.html">技术参考</a> - 字段型(Field Form)</h2>
+<p>  字段型是框架以页面表达形式来对数据库字段进行的分类，应用开发者不再直接面对数据库字段的物理存储数据类型，例如：SingleLineText 这种字段型就是单行文本输入框字段，即这种字段在界面上以单行文本输入框的形式出现。这里列出了 eIvy Framework 所有字段型，以供参考。</p>
+<h3 id="singlelinetext%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC%E6%A1%86">  <a href="FieldForm/SingleLineText.html">SingleLineText，单行文本框</a></h3>
+<h3 id="multilinetext%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%A1%86">  <a href="FieldForm/MultiLineText.html">MultiLineText，多行文本框</a></h3>
+<h3 id="numeric%E6%95%B0%E5%80%BC">  <a href="FieldForm/Numeric.html">Numeric，数值</a></h3>
+<h3 id="dropdownlist%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8">  <a href="FieldForm/DropDownList.html">DropDownList，下拉列表</a></h3>
+<h3 id="radiolist%E5%8D%95%E9%80%89%E5%88%97%E8%A1%A8">  <a href="FieldForm/RadioList.html">RadioList，单选列表</a></h3>
+<h3 id="checkboxlist%E5%A4%8D%E9%80%89%E5%88%97%E8%A1%A8">  <a href="FieldForm/CheckBoxList.html">CheckBoxList，复选列表</a></h3>
+<h3 id="simpleforeignkey%E7%AE%80%E5%8D%95%E5%A4%96%E7%A0%81">  <a href="FieldForm/SimpleForeignKey.html">SimpleForeignKey，简单外码</a></h3>
+<h3 id="listforeignkey%E5%88%97%E8%A1%A8%E5%A4%96%E7%A0%81">  <a href="FieldForm/ListForeignKey.html">ListForeignKey，列表外码</a></h3>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 

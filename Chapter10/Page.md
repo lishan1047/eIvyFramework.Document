@@ -14,5 +14,7 @@
 
 ### &emsp;&emsp;[COMMANDBUTTON，命令按钮](Page/CommandButton.html)  
 
+### &emsp;&emsp;[SQLSCRIPTOR，SQL 页面执行器](Page/SqlScriptor.html)  
+
 ---
 &emsp; &copy; eIvy Framework 2019.
