@@ -202,5 +202,17 @@ function CheckStudentCount(param) {
 
 &emsp;&emsp;另外，SumClientCallback 这个属性设置在 EnableSummary 属性设置为 True 的时候才会有效。
 
+&emsp;&emsp;因为交叉表是继承自 DynamicList，因此我们可以利用 SelectMode 属性改变数据行的选择行为。如：
+
+```xml
+<eIvy:DYNAMICCROSSTABLE ID="DDC1"
+  SelectMode="Multiple"
+  ...
+/>
+  <eIvy:SELECTOR SelectableControlID="DDC1"></eIvy:SELECTOR>
+```
+
+&emsp;&emsp;这样可以将每条数据的选择框呈现到界面上，但是由于交叉行列重新布局了原有的数据行，因此一个单元格内可能存在多行数据的情况。SelectMode 属性在交叉表中的默认值被重置为 None，因此需要显示地加上该属性的配置。
+
 ---
 &emsp; &copy; eIvy Framework 2019.
