@@ -371,6 +371,7 @@ code {
 <h3 id="%E6%A0%87%E7%AD%BE%E8%AF%AD%E6%B3%95">标签语法</h3>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>/&gt;</span>
 </div></code></pre>
+<h3 id="%E4%BA%A4%E5%8F%89%E8%A1%A8%E5%91%88%E7%8E%B0%E6%96%B9%E5%BC%8F"><strong>交叉表呈现方式</strong></h3>
 <p>  交叉表是将数据库中二维表的数据转置为多维表的形式，例如：我们存在一张数据库表格，具备字段 School 学院、Major 专业、Class 班级、StudentCount 学生人数</p>
 <table>
 <thead>
@@ -500,6 +501,8 @@ code {
 <p>  我们希望以下面的交叉表方式呈现：</p>
 <p><img src="../Image/2020072202.png"></img></p>
 <p>图 1 交叉表呈现方式</p>
+<p>  由于交叉表与列表的呈现格式完全不同，因而视图模板在交叉表中会被忽略，因此当你尝试去编辑视图模板获得不一样的界面效果，这一操作是无效的。</p>
+<h3 id="%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><strong>基本配置</strong></h3>
 <p>  通过 eIvy:DYNAMICCROSSTABLE 标签可以实现将数据库中原始二维表数据以这种交叉表方式呈现。这里有三个关键概念：行字段（Row Fields）、列字段（Column Fields）、单元格字段（Cell Fields），行字段就是上述交叉表中的 School、Major、Class，列字段则是 Gender，单元格字段是 StudentCount。我们可以通过以下标签来配置：</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
     <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
@@ -507,6 +510,7 @@ code {
     <span class="hljs-attr">CellFieldNames</span>=<span class="hljs-string">"StudentCount"</span>
 /&gt;</span>
 </div></code></pre>
+<h3 id="%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83%E6%A0%BC%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E8%8F%9C%E5%8D%95%E5%91%BD%E4%BB%A4"><strong>数据单元格的上下文菜单命令</strong></h3>
 <p>  我们还可以通过属性 CellCommandButtonSetting 为单元格中的数据项目提供操作命令，例如下面代码提供了删除命令按钮，图2 显示了配置命令后，当我们鼠标移入到单元格数据项目上，会出现 ... 符号，点击之后会出现命令操作菜单。</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
     <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
@@ -516,6 +520,15 @@ code {
 /&gt;</span>
 </div></code></pre>
 <p>  属性 CellCommandButtonSetting 采用 JSON 数组格式，每个{}表达的对象为一个命令按钮配置属性（有关命令按钮的属性参见<a href="../Index.html">命令按钮</a>），而且又因为交叉表继承自 DynamicList，因此适用于 DynamicList 的所有命令都可以用在单元格的数据项上。</p>
+<p>  另外，一些小技巧，可以帮大忙。例如：我们期望单元格内容的数据可以导航到另外的页面，通过为其配置命令菜单，可以实现，代码如下：</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
+    <span class="hljs-attr">...</span>
+    <span class="hljs-attr">CellCommandButtonSetting</span>=<span class="hljs-string">"[{CommandName:'ListDelete',Text:'删除',CssClass:'fa fa-close',Prompt:'删除数据后无法恢复，是否执行删除？'},{CommandName:'Empty',Text:' 查看详情',CssClass:'fa fa-info',NavigateUrl:'~/Students/DispForm?ID={@ID}'}]"</span>
+    <span class="hljs-attr">...</span>
+/&gt;</span>
+</div></code></pre>
+<p>  上述代码中通过在属性 CellCommandButtonSetting 中增加了一个命令的方式，为单元格数据项添加了一个导航到详情页的操作菜单。这种配置其实如同是在视图模板中为命令按钮配置属性一样，大家也注意到了 {@ID} 这种字段引用占位符的用法和视图模板中完全一致。</p>
+<h3 id="%E4%BF%9D%E6%8C%81%E6%95%B0%E6%8D%AE%E7%BC%96%E8%BE%91%E7%8A%B6%E6%80%81"><strong>保持数据编辑状态</strong></h3>
 <p>  实际上由于交叉表是继承自 DynamicList，因而 DynamicList 的很多功能和配置属性对于交叉表来说都是有效的，例如：AlwaysEditMode 属性可以让交叉表的单元格数据项处于编辑状态，由此可以通过交叉表的形式来编辑数据。下面的代码使得 StudentCount 字段在交叉表单元格中处于编辑状态，并配合一个保存命令按钮用于保存编辑的数据。</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"DCT1"</span>
     <span class="hljs-attr">RowFieldNames</span>=<span class="hljs-string">"School,Major,Class"</span>
@@ -528,8 +541,9 @@ code {
 <p><img src="../Image/2020072301.png"></img></p>
 <p>图 2 交叉表显示效果</p>
 <p>  我们注意到学院、专业、班级、性别这些行列字段并没有因为 AlwaysEditMode 属性被设置为 True，而处于编辑状态，即使在视图中将这些字段设置为可修改和新增，仍然如此。因此，要意识到一旦字段被当作行列字段，就失去了编辑功能。</p>
+<h3 id="%E6%95%B0%E6%8D%AE%E5%88%86%E9%A1%B5%E5%A4%84%E7%90%86"><strong>数据分页处理</strong></h3>
 <p>  对于交叉表同样可以采用分页控件进行数据分页呈现，但合计数据只会根据当前页的数据进行汇总。因此，一般情况下我们为了能够显示并合计完整的数据，需要将 DefaultPageSize 属性设置到足够大，以便于交叉表提取到完整的数据。</p>
-<p>  由于交叉表与列表的呈现格式完全不同，因而视图模板在交叉表中会被忽略，因此当你尝试去编辑视图模板获得不一样的界面效果，这一操作是无效的。</p>
+<h3 id="%E6%9B%B4%E5%A4%9A%E5%A4%96%E8%A7%82%E8%AE%BE%E7%BD%AE"><strong>更多外观设置</strong></h3>
 <p>  交叉表还提供了一组高度定制化的样式与外观属性，通过下图大家可以了解这些属性所设置交叉表的对应关系。</p>
 <p><img src="../Image/2020072302.png"></img></p>
 <p>图 3 交叉表的样式与外观属性</p>
@@ -586,16 +600,9 @@ code {
 /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span> <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DCT1"</span> <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"ListEditSave"</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"保存"</span> <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-primary"</span>/&gt;</span>
 </div></code></pre>
-<p>  大家也注意到了 EnableSummary 属性，通过将这个属性设置为 False 可以关闭汇总功能。</p>
 <p>  其实还有一些外观属性配置，可以帮助我们提供更多定制化需求，例如：EmptyText 当没有数据的时候，显示的文本；EmptyDataCssClass 当没有数据的时候表格的样式。</p>
-<p>  另外，在这里还有一些小技巧，可以帮大忙。例如：我们期望单元格内容的数据可以导航到另外的页面，通过为其配置命令菜单，可以实现，代码如下：</p>
-<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
-    <span class="hljs-attr">...</span>
-    <span class="hljs-attr">CellCommandButtonSetting</span>=<span class="hljs-string">"[{CommandName:'ListDelete',Text:'删除',CssClass:'fa fa-close',Prompt:'删除数据后无法恢复，是否执行删除？'},{CommandName:'Empty',Text:' 查看详情',CssClass:'fa fa-info',NavigateUrl:'~/Students/DispForm?ID={@ID}'}]"</span>
-    <span class="hljs-attr">...</span>
-/&gt;</span>
-</div></code></pre>
-<p>  上述代码中通过在属性 CellCommandButtonSetting 中增加了一个命令的方式，为单元格数据项添加了一个导航到详情页的操作菜单。这种配置其实如同是在视图模板中为命令按钮配置属性一样，大家也注意到了 {@ID} 这种字段引用占位符的用法和视图模板中完全一致。</p>
+<h3 id="%E4%BA%A4%E5%8F%89%E8%A1%A8%E7%9A%84%E6%B1%87%E6%80%BB"><strong>交叉表的汇总</strong></h3>
+<p>  大家也注意到了 EnableSummary 属性，通过将这个属性设置为 False 可以关闭汇总功能。</p>
 <p>  该标签还提供了汇总客户端回调方法，即通过配置 SumClientCallbak 属性可以实现交叉表在生成或者重新计算汇总值的过程中执行一段自己 JS 代码的逻辑。例如：我们想检验一下自己输入的数据汇总结果是否超出某个范围，通过下面的代码可以实现：</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>
     <span class="hljs-attr">ID</span>=<span class="hljs-string">"DDC1"</span> <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"SimpleListStyle form-inline table table-striped table-bordered table-hover"</span>
@@ -628,6 +635,7 @@ code {
 <p>  由于交叉表在每生成一个汇总数据的时候就会调用一次由 SumClientCallback 指定的 JS 方法，所以我们要搞清楚是针对什么汇总数据进行检验的，上述例子是针对 StudentCount 字段的交叉汇总值进行检验，所以通过 param.fname == &quot;StudentCount&quot; &amp;&amp; param.dir == &quot;cross&quot; 这个条件式来判断的。</p>
 <p>  当我们单元格字段处于编辑状态，一旦输入值发生变化之后，也会引起重新计算该汇总字段的汇总数据，从而也就引发回调方法。因此，该回调方法也能够响应汇总数据的重新计算过程。</p>
 <p>  另外，SumClientCallback 这个属性设置在 EnableSummary 属性设置为 True 的时候才会有效。</p>
+<h3 id="%E6%95%B0%E6%8D%AE%E8%A1%8C%E7%9A%84%E9%80%89%E6%8B%A9"><strong>数据行的选择</strong></h3>
 <p>  因为交叉表是继承自 DynamicList，因此我们可以利用 SelectMode 属性改变数据行的选择行为。如：</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"DDC1"</span>
   <span class="hljs-attr">SelectMode</span>=<span class="hljs-string">"Multiple"</span>
@@ -636,6 +644,8 @@ code {
   <span class="hljs-tag">&lt;<span class="hljs-name">eIvy:SELECTOR</span> <span class="hljs-attr">SelectableControlID</span>=<span class="hljs-string">"DDC1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">eIvy:SELECTOR</span>&gt;</span>
 </div></code></pre>
 <p>  这样可以将每条数据的选择框呈现到界面上，但是由于交叉行列重新布局了原有的数据行，因此一个单元格内可能存在多行数据的情况。SelectMode 属性在交叉表中的默认值被重置为 None，因此需要显示地加上该属性的配置。</p>
+<h3 id="%E6%95%B0%E6%8D%AE%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD"><strong>数据新增功能</strong></h3>
+<p>  同样的，由于交叉表继承自 DynamicList，因此可以启用交叉表的新增数据功能。例如：通过配置</p>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 

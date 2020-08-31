@@ -22,7 +22,7 @@
   }
   ```
 
-提供 eIvy Framework 的使用手册与教程
+提供 eIvy Framework 的使用手册与教程，一些使用心得可以参阅 [开发者博客文章](Blog/Index.html)。
 
 ## [概述](Chapter01/Index.html)
 
