@@ -2,8 +2,8 @@
 
 参阅以下博客主的文章：
 
-[赵子龙](赵子龙/Index.html)
 [付振兴](付振兴/Index.html)
+<img src="../Photo/Logo.png"/>
 
 ---
 &emsp; &copy; eIvy Framework 2019.
