@@ -46,7 +46,7 @@
 
 ### &emsp;&emsp;[数据库基本配置](Chapter03/DatabaseConfig.html)
 
-### &emsp;&emsp;[表格创建](Chapter03/Sec02.html) - 甘
+### &emsp;&emsp;[表格创建](Chapter03/Sec02.html) - 付振兴
 
 ### &emsp;&emsp;[字段创建](Chapter03/Sec03.html)  
 
