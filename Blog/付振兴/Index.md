@@ -3,6 +3,7 @@
 参阅以下博客主的文章：
 
 [付振兴](付振兴/Index.html)
+<img src="../Photo/Logo.png"/>
 
 ---
 &emsp; &copy; eIvy Framework 2019.
