@@ -366,8 +366,29 @@ code {
     });
   </script>
 <h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22img-width%2280%22-height%2240%22-src%22logopng%22imgdivdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../../Logo.png"></img></div></div></h1>
-<p>xxxxxx</p>
-<hr>
+<p>常见的javascript伪链接经常用在href和onclick等事件属性上</p>
+<h1 id="%E7%94%A8%E5%9C%A8href%E4%B8%AD">用在href中</h1>
+<p>在a标签的href中要注意href伪链接执行的动作是在别的动作执行完成后才执行的，如果想禁止href后动作的执行需要前面有一个Flase的返回值。</p>
+<h1 id="%E7%94%A8%E5%9C%A8onclick%E7%AD%89%E4%BA%8B%E4%BB%B6%E4%B8%AD">用在onclick等事件中</h1>
+<h2 id="%E4%BE%8B%E5%A6%82">例如：</h2>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;submit&quot; onclick=&quot;javascript: Submit();&quot;&gt;
+&lt;/body&gt;
+&lt;script&gt;
+function Submit() {
+      alert(&quot;你真好看！&quot;);  
+}
+&lt;/script&gt;
+&lt;/html&gt;
+</div></code></pre>
+<h2 id="%E6%89%A7%E8%A1%8C%E4%B8%8A%E8%BF%B0%E4%BB%A3%E7%A0%81%E5%90%8E%E4%BC%9A%E5%BC%B9%E5%87%BA-%E4%BD%A0%E7%9C%9F%E5%A5%BD%E7%9C%8Bemsp%E8%BF%99%E5%8F%A5%E8%AF%9D">执行上述代码后会弹出 <em>你真好看</em>&amp;emsp这句话。</h2>
 <p>  © eIvy Framework 2019.</p>
 
 </body>

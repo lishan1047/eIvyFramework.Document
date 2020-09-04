@@ -4,7 +4,7 @@
 
 <img src="../Photo/Logo.png"/>
 
-### &emsp;&emsp;[xxx](1.html)
+### &emsp;&emsp;[javascript伪链接](1.html)
 ### &emsp;&emsp;[ffff](2.html)
 ---
 &emsp; &copy; eIvy Framework 2019.
