@@ -1,5 +1,12 @@
 # <div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../../Logo.png"></img></div></div>
+<<<<<<< HEAD
 付振兴2020暑假学习总结.  
+=======
+
+参阅以下博客主的文章：
+
+[付振兴](付振兴/Index.html)
+>>>>>>> c72e2b72097c31af719f5c18c3ac6aa39e0eb9c8
 <img src="../Photo/Logo.png"/>
 > 区块中使用列表
 > 1. 第一项
@@ -20,5 +27,4 @@ alert('付振兴的博客');
 
   [1]: http://www.biying.com/
 ---
-&emsp; &copy; eIvy Framework 2020
-.
+&emsp; &copy; eIvy Framework 2019.
