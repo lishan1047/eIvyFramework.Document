@@ -366,8 +366,72 @@ code {
     });
   </script>
 <h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22img-width%2280%22-height%2240%22-src%22logopng%22imgdivdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../../Logo.png"></img></div></div></h1>
-<p>赵子龙：XXXX 叶子健c</p>
-<img src="../Photo/Logo.png"/>
+<h3 align="right">作者：曹怡楠</h3>
+<p>Hello!我们这次将要讲述的是框架中参数的获取方法，主要有以下三种：</p>
+<ol>
+<li>从地址栏中获取</li>
+<li>从框架中获取登录ID@EntityID,登录角色@LoginRole</li>
+<li>从字段中获取</li>
+</ol>
+<ul>
+<li>
+<ol>
+<li>地址栏</li>
+</ol>
+<blockquote>
+<ol>
+<li>筛选视图获取参数</li>
+</ol>
+</blockquote>
+<pre class="hljs"><code><div>&lt;eIvy:Parameters&gt;
+&lt;eIvy:QueryStringParameter xmlns:eIvy=&quot;http://www.eIvy.com&quot; Name=&quot;(变量名)&quot; DataType=&quot;(变量类型)&quot; QueryStringName=&quot;(变量名)&quot; /&gt;
+&lt;/eIvy:Parameters&gt;
+</div></code></pre>
+<blockquote>
+<ol start="2">
+<li>脚本获取参数</li>
+</ol>
+</blockquote>
+<pre class="hljs"><code><div>PreSqlScriptParameters=&quot;{Page.Request.QueryString[@(地址栏中变量名)].@(脚本中变量名)}&quot;
+(后置脚本同上)
+</div></code></pre>
+</li>
+<li>
+<ol start="2">
+<li>框架</li>
+</ol>
+<blockquote>
+<ol>
+<li>筛选视图获取@EntityID,@LoginRole</li>
+</ol>
+</blockquote>
+<pre class="hljs"><code><div>&lt;eIvy:Parameters&gt;
+&lt;eIvy:ControlPropertyParameter xmlns:eIvy=&quot;http://www.eIvy.com&quot; Name=&quot;EntityID&quot; DataType=&quot;Int&quot; ControlPropertyName=&quot;SecurityContext.LoginUserMapping.EntityID&quot; /&gt;
+&lt;eIvy:ControlPropertyParameter xmlns:eIvy=&quot;http://www.eIvy.com&quot; Name=&quot;LoginRole&quot; DataType=&quot;String&quot; ControlPropertyName=&quot;SecurityContext.LoginRole&quot; /&gt;
+&lt;/eIvy:Parameters&gt;
+</div></code></pre>
+<blockquote>
+<ol start="2">
+<li>脚本获取@EntityID,@LoginRole</li>
+</ol>
+</blockquote>
+<pre class="hljs"><code><div>PreSqlScriptParameters=&quot;{Page.SecurityContext.LoginUserMapping.EntityID.@EntityID}{Page.SecurityContext.LoginRole.@LoginRole}&quot;
+(后置脚本同上)
+</div></code></pre>
+</li>
+<li>
+<ol start="3">
+<li>字段</li>
+</ol>
+<blockquote>
+<p>脚本获取参数</p>
+</blockquote>
+<pre class="hljs"><code><div>PreSqlScriptParameters=&quot;{{@(字段名)}.@(参数名)}
+(后置脚本同上)
+</div></code></pre>
+</li>
+</ul>
+<img src="../Photo/Logo.png" position="center" />
 <hr>
 <p>  © eIvy Framework 2019.</p>
 
