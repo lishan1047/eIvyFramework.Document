@@ -125,5 +125,12 @@ AND Student.Sname = TableIn.Sname)
 IN适合于外表大而内表小的情况；  
 EXISTS适合于外表小而内表大的情况。  
 
+以下是撰写本文时参考到的一些博客，如有侵权，请通知删除。  
+[SQL中EXISTS的用法](https://www.cnblogs.com/netserver/archive/2008/12/25/1362615.html)  
+[SQL 中的 EXISTS 到底做了什么？](https://zhuanlan.zhihu.com/p/20005249)  
+[Sql语句中IN和exists的区别及应用](https://www.cnblogs.com/liyasong/p/sql_in_exists.html)  
+[SQL查询中in和exists的区别分析](https://www.jianshu.com/p/f212527d76ff)  
+
+
 ---
 &emsp; &copy; eIvy Framework 2019.

@@ -369,12 +369,12 @@ code {
 <h1 id="sqlin%E4%B8%8Eexists">SQL_IN与EXISTS</h1>
 <p><img src="..\Photo\Datebase1_ck.png" alt="数据库展示图1"></p>
 <p><img src="..\Photo\Datebase2_ck.png" alt="数据库展示图2"></p>
-<p>  本文主要讨论SQL中'IN'操作符与'EXISTS'操作符的原理，用法，两者间的比较以及各自的适应情况。
+<p>本文主要讨论SQL中'IN'操作符与'EXISTS'操作符的原理，用法，两者间的比较以及各自的适应情况。
 本文中提到的所有数据表基于王珊《数据库系统概论（第4版）》。</p>
-<p>  IN 与EXISTS大多数情况下都是用于SELECT查询语句的条件判断中，因此我想在正文之前先简要介绍一下SELECT的大致过程：</p>
-<p>  分析器会先看语句的第一个词，当它发现第一个词是SELECT关键字的时候，它会跳到FROM关键字，然后通过FROM关键字找到表名并把表装入内存。接着是找WHERE关键字，如果找不到则返回到SELECT找字段解析，如果找到WHERE，则分析其中的条件，完成后再回到SELECT分析字段。最后形成一张我们要的虚表。</p>
-<p>  WHERE关键字后面的是条件表达式。条件表达式计算完成后，会有一个返回值，即非0或0，非0即为真(true)，0即为假(false)。同理WHERE后面的条件也有一个返回值，真或假，来确定接下来执不执行SELECT。</p>
-<p>  分析器先找到关键字SELECT，然后跳到FROM关键字将目标表导入内存，并通过指针找到第一条记录，接着找到WHERE关键字计算它的条件表达式，如果为真那么把这条记录装到一个虚表当中，指针再指向下一条记录。如果为假那么指针直接指向下一条记录，而不进行其它操作。一直检索完整个表，并把检索出来的虚拟表返回给用户。</p>
+<p>IN 与EXISTS大多数情况下都是用于SELECT查询语句的条件判断中，因此我想在正文之前先简要介绍一下SELECT的大致过程：</p>
+<p>分析器会先看语句的第一个词，当它发现第一个词是SELECT关键字的时候，它会跳到FROM关键字，然后通过FROM关键字找到表名并把表装入内存。接着是找WHERE关键字，如果找不到则返回到SELECT找字段解析，如果找到WHERE，则分析其中的条件，完成后再回到SELECT分析字段。最后形成一张我们要的虚表。</p>
+<p>WHERE关键字后面的是条件表达式。条件表达式计算完成后，会有一个返回值，即非0或0，非0即为真(true)，0即为假(false)。同理WHERE后面的条件也有一个返回值，真或假，来确定接下来执不执行SELECT。</p>
+<p>分析器先找到关键字SELECT，然后跳到FROM关键字将目标表导入内存，并通过指针找到第一条记录，接着找到WHERE关键字计算它的条件表达式，如果为真那么把这条记录装到一个虚表当中，指针再指向下一条记录。如果为假那么指针直接指向下一条记录，而不进行其它操作。一直检索完整个表，并把检索出来的虚拟表返回给用户。</p>
 <p>下面让我们开始正文。</p>
 <p><strong>IN</strong></p>
 <p>IN 操作符原理：<br>
@@ -470,6 +470,11 @@ AND Student.Sname = TableIn.Sname)<br>
 而两者应用场景的比较，通过两者运行过程的，可以粗略的概括为：<br>
 IN适合于外表大而内表小的情况；<br>
 EXISTS适合于外表小而内表大的情况。</p>
+<p>以下是撰写本文时参考到的一些博客，如有侵权，请通知删除。<br>
+<a href="https://www.cnblogs.com/netserver/archive/2008/12/25/1362615.html">SQL中EXISTS的用法</a><br>
+<a href="https://zhuanlan.zhihu.com/p/20005249">SQL 中的 EXISTS 到底做了什么？</a><br>
+<a href="https://www.cnblogs.com/liyasong/p/sql_in_exists.html">Sql语句中IN和exists的区别及应用</a><br>
+<a href="https://www.jianshu.com/p/f212527d76ff">SQL查询中in和exists的区别分析</a></p>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 
