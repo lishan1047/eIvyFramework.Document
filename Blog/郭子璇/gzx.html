@@ -365,19 +365,19 @@ code {
           : 'default'
     });
   </script>
-<p>#传参<br>
-##1、筛选获取参数<br>
-<a href="eIvy:Parameters">eIvy:Parameters</a><br>
+<h1 id="%E4%BC%A0%E5%8F%82">传参</h1>
+<h2 id="1%E7%AD%9B%E9%80%89%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0">1、筛选获取参数</h2>
+<p><a href="eIvy:Parameters">eIvy:Parameters</a><br>
 &lt;eIvy:QueryStringParameter xmlns:eIvy=&quot;http://www.eIvy.com&quot; Name=&quot;ID（对这个参数的命名）&quot; DataType=&quot;Int&quot; QueryStringName=&quot;TID（上个页面传过来的参数名）&quot; /&gt;--上一个页面传过来的参数<br>
 &lt;eIvy:ControlPropertyParameter xmlns:eIvy=&quot;http://www.eIvy.com&quot; Name=&quot;EntityID（名字任取，一般为这个）&quot; DataType=&quot;Int&quot;   ControlPropertyName=&quot;SecurityContext.LoginUserMapping.EntityID&quot; /&gt;--获取@EntityID<br>
 &lt;eIvy:ControlPropertyParameter xmlns:eIvy=&quot;http://www.eIvy.com&quot; Name=&quot;LoginRole（名字任取，一般为这个）&quot; DataType=&quot;String&quot;   ControlPropertyName=&quot;SecurityContext.LoginRole&quot; /&gt;--获取当前登录角色@LoginRole<br>
 &lt;/eIvy:Parameters&gt;</p>
-<p>##2、工具栏传参<br>
-&lt;eIvy:TOOLBAR ToolBarItemParameterSettings=&quot;SouvenirIssued-PreSqlScriptParameters={SecurityContext.LoginUserMapping.EntityID.@EntityID}  {PeriodicalThesis.@TableName}&quot; /&gt;</p>
+<h2 id="2%E5%B7%A5%E5%85%B7%E6%A0%8F%E4%BC%A0%E5%8F%82">2、工具栏传参</h2>
+<p>&lt;eIvy:TOOLBAR ToolBarItemParameterSettings=&quot;SouvenirIssued-PreSqlScriptParameters={SecurityContext.LoginUserMapping.EntityID.@EntityID}  {PeriodicalThesis.@TableName}&quot; /&gt;</p>
 <p>其中SouvenirIssued为工具栏名，PreSqlScriptParameters表示前置脚本，若是后置脚本用PostSqlScriptParameters</p>
-<p>##3、命令按钮传参<br>
-&lt;eIvy:COMMANDBUTTON xmlns:eIvy=&quot;http://www.eIvy.com&quot; ID=&quot;BTN01&quot; Text=&quot;设置主题智库&quot; CommandName=&quot;FormSave&quot;（脚本执行的命令，此处为保存）   CssClass=&quot;BTN1 btn btn-large btn-default&quot;（按钮的样式） PostSqlScriptName=&quot;selectTheme&quot; （后置脚本名称，若为前置脚本则为PreSqlScriptName）  PostSqlScriptParameters=&quot;{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}（传入当前ID）{Page.SecurityContext.LoginRole.@Role}(传入当前登录者的角色){@ID}&quot; DynamicDataControlID=&quot;DFC1&quot; SuccessMessage=&quot;设置成功&quot;（脚本执行后的弹出框）&gt;&lt;/eIvy:COMMANDBUTTON&gt;</p>
-<p>##4、点开某个页面自动执行一段JS脚本</p>
+<h2 id="3%E5%91%BD%E4%BB%A4%E6%8C%89%E9%92%AE%E4%BC%A0%E5%8F%82">3、命令按钮传参</h2>
+<p>&lt;eIvy:COMMANDBUTTON xmlns:eIvy=&quot;http://www.eIvy.com&quot; ID=&quot;BTN01&quot; Text=&quot;设置主题智库&quot; CommandName=&quot;FormSave&quot;（脚本执行的命令，此处为保存）   CssClass=&quot;BTN1 btn btn-large btn-default&quot;（按钮的样式） PostSqlScriptName=&quot;selectTheme&quot; （后置脚本名称，若为前置脚本则为PreSqlScriptName）  PostSqlScriptParameters=&quot;{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}（传入当前ID）{Page.SecurityContext.LoginRole.@Role}(传入当前登录者的角色){@ID}&quot; DynamicDataControlID=&quot;DFC1&quot; SuccessMessage=&quot;设置成功&quot;（脚本执行后的弹出框）&gt;&lt;/eIvy:COMMANDBUTTON&gt;</p>
+<h2 id="4%E7%82%B9%E5%BC%80%E6%9F%90%E4%B8%AA%E9%A1%B5%E9%9D%A2%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5js%E8%84%9A%E6%9C%AC">4、点开某个页面自动执行一段JS脚本</h2>
 <script type="text/javascript">  
 function invokeRequirementsTest() {  
  var tableStyle = document.getElementById("table");  
@@ -386,7 +386,7 @@ var thStyle = tableStyle.getElementsByTagName("th");
    }  
 </script>（所要执行的JS脚本）  
 <p>&lt;eIvy:SCRIPTLOADER PageStartupScript=&quot;invokeRequirementsTest();&quot;&gt;&lt;/eIvy:SCRIPTLOADER&gt;（页面调用）</p>
-<p>##5、筛选框和命令按钮放一行</p>
+<h2 id="5%E7%AD%9B%E9%80%89%E6%A1%86%E5%92%8C%E5%91%BD%E4%BB%A4%E6%8C%89%E9%92%AE%E6%94%BE%E4%B8%80%E8%A1%8C">5、筛选框和命令按钮放一行</h2>
 <div style="height:32px;">  
     <div style="position:absolute;top:50px;left:10px;">  
       <eIvy:COMMANDBUTTON xmlns:eIvy="http://www.eIvy.com" ID="BTN01" Text="保存" CommandName="ListEditSave" CssClass="BTN1 btn btn-large   btn-default" PostSqlScriptName="updateThinktankAdminID" PostSqlScriptParameters="{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}  {@ID}" DynamicDataControlID="DDC1" SuccessMessage="保存成功！"></eIvy:COMMANDBUTTON>  
@@ -395,7 +395,7 @@ var thStyle = tableStyle.getElementsByTagName("th");
       <eIvy:SIMPLEFILTER xmlns:eIvy="http://www.eIvy.com" ID="F1" FilterableControlID="DDC1" Visible="true" />  
     </div>  
   </div>  
-<p>###为添加的按钮设置立体样式</p>
+<h3 id="%E4%B8%BA%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%8C%89%E9%92%AE%E8%AE%BE%E7%BD%AE%E7%AB%8B%E4%BD%93%E6%A0%B7%E5%BC%8F">为添加的按钮设置立体样式</h3>
   <style>.BTN1{  
 box-shadow: 2px 2px  12px  #000000;（左右距离、上下距离、阴影过度、阴影颜色）  
 }</style>  
