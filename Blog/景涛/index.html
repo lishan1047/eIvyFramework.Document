@@ -366,6 +366,105 @@ code {
     });
   </script>
 <h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22divdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"></div></div></h1>
+<h1 id="sql-%E6%B8%B8%E6%A0%87">SQL 游标</h1>
+<p>  游标是处理结果集的一种机制，它可以定位到结果集中的某一行、多行数据进行读写，也可以移动到所需要的行进行数据操作。它的主要用处有：</p>
+<blockquote>
+<p>定位到结果集中的某一行。<br>
+对当前位置的数据进行读写。<br>
+可以对结果集中的数据进行单独操作。</p>
+</blockquote>
+<p>游标的优点：<br>
+  游标提供了一种对表中检索的数据灵活操作的一种手段,游标提供了对结果集的每一行进行不同的操作的方法，而不是一次对整个结果集进行同一操作。游标也提供增、删、改的功能。</p>
+<p>游标的缺点：<br>
+  游标的速度很慢，在使用过程中一定要谨慎，游标的滥用可能会导致数据库发生异常错误。</p>
+<p>游标的生命周期：<br>
+  游标的生命周期包含五个阶段：<strong>声明游标、打开游标、读取游标数据、关闭游标、释放游标</strong>。</p>
+<ol>
+<li>
+<p>声明游标：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span> cursor_name <span class="hljs-keyword">cursor</span>  <span class="hljs-keyword">for</span> <span class="hljs-keyword">select</span> column_name <span class="hljs-keyword">from</span> table_name
+</div></code></pre>
+</li>
+<li>
+<p>打开游标：</p>
+<pre class="hljs"><code><div>open cursor_name
+</div></code></pre>
+</li>
+<li>
+<p>读取游标数据：</p>
+<pre class="hljs"><code><div>fetch
+  [next|prior|first|last|absoute n|relative n]
+from cursor_name into @variable_name
+</div></code></pre>
+<p>参数说明：</p>
+<ul>
+<li>next：当前位置的下一行</li>
+<li>prior：当前位置的上一行</li>
+<li>first：结果集的第一行</li>
+<li>last：最后一行</li>
+<li>absoute n：从游标的第一行开始数，第n行</li>
+<li>relative n：从当前位置开始数，第n行<br>
+例如：</li>
+</ul>
+<pre class="hljs"><code><div>fetch next from cursor_name
+fetch prior from cursor_name
+fetch first from cursor_name
+fetch last from cursor_name
+fetch absoute 4 from cursor_name
+fetch relative 3 from cursor_name
+</div></code></pre>
+<p>通过检测全局变量@@FETCH_Status的值，获得提取状态信息，该状态用于判断Fetch语句返回数据的有效性。当执行一条Fetch语句之后，@@Fetch_Status可能出现3种情况：</p>
+<ul>
+<li>0，Fetch语句执行成功</li>
+<li>-1，Fetch语句失败或行不在结果集中。</li>
+<li>-2，提取的行不存在。</li>
+</ul>
+<p>例如：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">declare</span> @OrderID <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">fetch</span> absoute <span class="hljs-number">4</span> <span class="hljs-keyword">from</span> cursor_name <span class="hljs-keyword">into</span> @OrderID
+<span class="hljs-keyword">while</span> @@Fetch_Status=<span class="hljs-number">0</span> <span class="hljs-comment">--提取成功，进行下一行的操作</span>
+  <span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">select</span> @OrderID <span class="hljs-keyword">as</span> <span class="hljs-keyword">id</span>
+    <span class="hljs-keyword">fetch</span> <span class="hljs-keyword">next</span> <span class="hljs-keyword">from</span> cursor_name <span class="hljs-keyword">into</span> @OrderID  <span class="hljs-comment">--移动游标</span>
+  <span class="hljs-keyword">end</span>
+</div></code></pre>
+<p><strong>利用游标更新、删除数据</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1.声明游标</span>
+<span class="hljs-keyword">declare</span> cur1 <span class="hljs-keyword">cursor</span> <span class="hljs-keyword">for</span> 
+<span class="hljs-keyword">select</span> ContactID,CardID <span class="hljs-keyword">from</span> Contacts
+<span class="hljs-comment">--2.打开游标</span>
+<span class="hljs-keyword">open</span> cur1
+<span class="hljs-comment">--3.声明游标提取数据所要存放的变量</span>
+<span class="hljs-keyword">declare</span> @ContactID <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">declare</span> @CardID <span class="hljs-built_in">int</span>
+<span class="hljs-comment">--4.定位游标定位到哪一行</span>
+<span class="hljs-keyword">fetch</span> <span class="hljs-keyword">first</span> <span class="hljs-keyword">from</span> cur1 <span class="hljs-keyword">into</span> @ContactID,@CardID <span class="hljs-comment">--into的变量数量必须与游标查询结果集的列数目相同</span>
+<span class="hljs-keyword">while</span> @@fetch_status=<span class="hljs-number">0</span>
+<span class="hljs-keyword">begin</span>
+  <span class="hljs-keyword">if</span>(@ContactID=<span class="hljs-number">1001</span>)
+  <span class="hljs-keyword">begin</span>
+  <span class="hljs-keyword">update</span> Contacts <span class="hljs-keyword">set</span> <span class="hljs-keyword">Name</span>=<span class="hljs-string">"测试"</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">current</span> <span class="hljs-keyword">of</span> cur1 <span class="hljs-comment">--更新当前行</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span>(@ContactID=<span class="hljs-number">2001</span>)
+  <span class="hljs-keyword">begin</span>
+  <span class="hljs-keyword">delete</span> Contacts <span class="hljs-keyword">where</span> <span class="hljs-keyword">current</span> <span class="hljs-keyword">of</span> cur1 <span class="hljs-comment">--删除当前行</span>
+  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">fetch</span> <span class="hljs-keyword">next</span> <span class="hljs-keyword">from</span> cur1 <span class="hljs-keyword">into</span> @ContactID,@CardID <span class="hljs-comment">--移动游标至下一行</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+</li>
+<li>
+<p>关闭游标<br>
+  游标打开后，服务器会专门为游标分配一定的内从空间存放游标操作数据的结果集。所以游标一旦用过，应及时关闭，避免服务器资源浪费。<br>
+<code>close cursor_name</code></p>
+</li>
+<li>
+<p>释放游标<br>
+删除游标，释放资源<br>
+<code>deallocate cursor_name</code></p>
+</li>
+</ol>
 <hr>
 <p>  © eIvy Framework 2020.</p>
 
