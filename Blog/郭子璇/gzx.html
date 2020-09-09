@@ -378,28 +378,31 @@ code {
 <h2 id="3%E5%91%BD%E4%BB%A4%E6%8C%89%E9%92%AE%E4%BC%A0%E5%8F%82">3、命令按钮传参</h2>
 <p>&lt;eIvy:COMMANDBUTTON xmlns:eIvy=&quot;http://www.eIvy.com&quot; ID=&quot;BTN01&quot; Text=&quot;设置主题智库&quot; CommandName=&quot;FormSave&quot;（脚本执行的命令，此处为保存）   CssClass=&quot;BTN1 btn btn-large btn-default&quot;（按钮的样式） PostSqlScriptName=&quot;selectTheme&quot; （后置脚本名称，若为前置脚本则为PreSqlScriptName）  PostSqlScriptParameters=&quot;{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}（传入当前ID）{Page.SecurityContext.LoginRole.@Role}(传入当前登录者的角色){@ID}&quot; DynamicDataControlID=&quot;DFC1&quot; SuccessMessage=&quot;设置成功&quot;（脚本执行后的弹出框）&gt;&lt;/eIvy:COMMANDBUTTON&gt;</p>
 <h2 id="4%E7%82%B9%E5%BC%80%E6%9F%90%E4%B8%AA%E9%A1%B5%E9%9D%A2%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5js%E8%84%9A%E6%9C%AC">4、点开某个页面自动执行一段JS脚本</h2>
-<script type="text/javascript">  
+<pre class="hljs"><code><div>&lt;script type=&quot;text/javascript&quot;&gt;  
 function invokeRequirementsTest() {  
- var tableStyle = document.getElementById("table");  
-var thStyle = tableStyle.getElementsByTagName("th");  
- thStyle[3].style.width = "10px";  
+ var tableStyle = document.getElementById(&quot;table&quot;);  
+var thStyle = tableStyle.getElementsByTagName(&quot;th&quot;);  
+ thStyle[3].style.width = &quot;10px&quot;;  
    }  
-</script>（所要执行的JS脚本）  
-<p>&lt;eIvy:SCRIPTLOADER PageStartupScript=&quot;invokeRequirementsTest();&quot;&gt;&lt;/eIvy:SCRIPTLOADER&gt;（页面调用）</p>
+&lt;/script&gt;
+</div></code></pre>
+<p>（所要执行的JS脚本）<br>
+&lt;eIvy:SCRIPTLOADER PageStartupScript=&quot;invokeRequirementsTest();&quot;&gt;&lt;/eIvy:SCRIPTLOADER&gt;（页面调用）</p>
 <h2 id="5%E7%AD%9B%E9%80%89%E6%A1%86%E5%92%8C%E5%91%BD%E4%BB%A4%E6%8C%89%E9%92%AE%E6%94%BE%E4%B8%80%E8%A1%8C">5、筛选框和命令按钮放一行</h2>
-<div style="height:32px;">  
-    <div style="position:absolute;top:50px;left:10px;">  
-      <eIvy:COMMANDBUTTON xmlns:eIvy="http://www.eIvy.com" ID="BTN01" Text="保存" CommandName="ListEditSave" CssClass="BTN1 btn btn-large   btn-default" PostSqlScriptName="updateThinktankAdminID" PostSqlScriptParameters="{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}  {@ID}" DynamicDataControlID="DDC1" SuccessMessage="保存成功！"></eIvy:COMMANDBUTTON>  
-    </div>  
-    <div style="position:absolute;top:50px;left:85px;">  
-      <eIvy:SIMPLEFILTER xmlns:eIvy="http://www.eIvy.com" ID="F1" FilterableControlID="DDC1" Visible="true" />  
-    </div>  
-  </div>  
+<pre class="hljs"><code><div>&lt;div style=&quot;height:32px;&quot;&gt;  
+    &lt;div style=&quot;position:absolute;top:50px;left:10px;&quot;&gt;  
+      &lt;eIvy:COMMANDBUTTON xmlns:eIvy=&quot;http://www.eIvy.com&quot; ID=&quot;BTN01&quot; Text=&quot;保存&quot; CommandName=&quot;ListEditSave&quot; CssClass=&quot;BTN1 btn btn-large   btn-default&quot; PostSqlScriptName=&quot;updateThinktankAdminID&quot; PostSqlScriptParameters=&quot;{this.SecurityContext.LoginUserMapping.EntityID.@EntityID}  {@ID}&quot; DynamicDataControlID=&quot;DDC1&quot; SuccessMessage=&quot;保存成功！&quot;&gt;&lt;/eIvy:COMMANDBUTTON&gt;  
+    &lt;/div&gt;  
+    &lt;div style=&quot;position:absolute;top:50px;left:85px;&quot;&gt;  
+      &lt;eIvy:SIMPLEFILTER xmlns:eIvy=&quot;http://www.eIvy.com&quot; ID=&quot;F1&quot; FilterableControlID=&quot;DDC1&quot; Visible=&quot;true&quot; /&gt;  
+    &lt;/div&gt;  
+  &lt;/div&gt;  
+</div></code></pre>
 <h3 id="%E4%B8%BA%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%8C%89%E9%92%AE%E8%AE%BE%E7%BD%AE%E7%AB%8B%E4%BD%93%E6%A0%B7%E5%BC%8F">为添加的按钮设置立体样式</h3>
-  <style>.BTN1{  
+<pre class="hljs"><code><div>  &lt;style&gt;.BTN1{  
 box-shadow: 2px 2px  12px  #000000;（左右距离、上下距离、阴影过度、阴影颜色）  
-}</style>  
-<p><img src="C:\Users\yf\Desktop\1.PNG" alt="按钮示例"></p>
+}&lt;/style&gt;  
+</div></code></pre>
 
 </body>
 </html>
