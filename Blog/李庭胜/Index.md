@@ -27,7 +27,7 @@ AS
 SELECT EmployeeID, LastName, FirstName   
 FROM Northwind.dbo.Employees   
 * 视图的结果集有三列：一个 int 列和两个 nvarchar 列。传递到在视图上定义的 INSTEAD OF 触发器的 inserted 和 deleted 表也具有名为 EmployeeID 的 int 列、名为 LName 的 nvarchar 列和名为 FName 的 nvarchar 列。   
-> 视图的选择列表还包含不直接映射到单个基表列的表达式。一些视图表达式（如常量调用或函数调用）可能不引用任何列，这类表达式会被忽略。复杂的表达式会引用多列，但在 inserted 和 deleted 表中，每个插入的行仅有一个值。如果视图中的简单表达式引用具有复杂表达式的计算列，则这些简单表达式也有同样的问题。视图上的 INSTEAD OF 触发器必须处理这些类型的表达式。有关更多信息，请参见视图上 INSTEAD OF 触发器中的表达式和计算列。  
+> 视图的选择列表还包含不直接映射到单个基表列的表达式,一些视图表达式（如常量调用或函数调用）可能不引用任何列，这类表达式会被忽略。复杂的表达式会引用多列，但在 inserted 和 deleted 表中，每个插入的行仅有一个值。如果视图中的简单表达式引用具有复杂表达式的计算列，则这些简单表达式也有同样的问题。视图上的 INSTEAD OF 触发器必须处理这些类型的表达式。有关更多信息，请参见视图上 INSTEAD OF 触发器中的表达式和计算列。  
 顺便说一下，当对某张表建立触发器后，分3种情况讨论   
 #### 1.插入操作（Insert）  
 Inserted表有数据，Deleted表无数据   
