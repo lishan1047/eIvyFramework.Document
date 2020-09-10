@@ -368,7 +368,33 @@ code {
 <h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22img-width%2280%22-height%2240%22-src%22logopng%22imgdivdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../../Logo.png"></img></div></div></h1>
 <p>常见的javascript伪链接经常用在href和onclick等事件属性上</p>
 <h1 id="%E7%94%A8%E5%9C%A8href%E4%B8%AD">用在href中</h1>
-<p>在a标签的href中要注意href伪链接执行的动作是在别的动作执行完成后才执行的，如果想禁止href后动作的执行需要前面有一个Flase的返回值。</p>
+<h2 id="%E4%BE%8B%E5%A6%82">例如：</h2>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;javascript: Submit()&quot;&gt;弹出&lt;/a&gt;
+&lt;/body&gt;
+&lt;script&gt;
+function Submit() {
+      alert(&quot;******&quot;);  
+}
+&lt;/script&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p>执行上述代码后会弹出******</p>
+<h2 id="%E5%9C%A8a%E6%A0%87%E7%AD%BE%E7%9A%84href%E4%B8%AD%E8%A6%81%E6%B3%A8%E6%84%8Fhref%E4%BC%AA%E9%93%BE%E6%8E%A5%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%98%AF%E5%9C%A8%E5%88%AB%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%88%90%E5%90%8E%E6%89%8D%E6%89%A7%E8%A1%8C%E7%9A%84ie6%E9%99%A4%E5%A4%96%E5%A6%82%E6%9E%9C%E6%83%B3%E7%A6%81%E6%AD%A2href%E5%90%8E%E5%8A%A8%E4%BD%9C%E7%9A%84%E6%89%A7%E8%A1%8C%E9%9C%80%E8%A6%81%E5%89%8D%E9%9D%A2%E6%9C%89%E4%B8%80%E4%B8%AAflase%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC">在a标签的href中要注意href伪链接执行的动作是在别的动作执行完成后才执行的(IE6除外)，如果想禁止href后动作的执行需要前面有一个Flase的返回值。</h2>
+<p>要想禁止href动作的执行可以采用如下的方式</p>
+<pre class="hljs"><code><div>&lt;a href=&quot;javascript: Submit()&quot; onclick=&quot;SubmitT();return false;&quot;&gt;弹出&lt;/a&gt;
+</div></code></pre>
+<p>或</p>
+<pre class="hljs"><code><div>&lt;a href=&quot;javascript: Submit()&quot; onclick=&quot;SubmitT();event.returnValue=false;&quot;&gt;弹出&lt;/a&gt;
+</div></code></pre>
+<p>这两种方式都可以只执行SubmitT事件,不执行Sumbit事件</p>
 <h1 id="%E7%94%A8%E5%9C%A8onclick%E7%AD%89%E4%BA%8B%E4%BB%B6%E4%B8%AD">用在onclick等事件中</h1>
 <h2 id="%E4%BE%8B%E5%A6%82">例如：</h2>
 <pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
@@ -383,12 +409,12 @@ code {
 &lt;/body&gt;
 &lt;script&gt;
 function Submit() {
-      alert(&quot;你真好看！&quot;);  
+      alert(&quot;*****&quot;);  
 }
 &lt;/script&gt;
 &lt;/html&gt;
 </div></code></pre>
-<p>执行上述代码后会弹出<em>你真好看</em>这句话。</p>
+<p>执行上述代码后会弹出*****</p>
 <p>  © eIvy Framework 2019.</p>
 
 </body>
