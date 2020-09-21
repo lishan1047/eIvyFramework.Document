@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Index.md</title>
+<title>Account.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -365,29 +365,11 @@ code {
           : 'default'
     });
   </script>
-<h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22img-width%2280%22-height%2240%22-src%22logopng%22imgdivdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../../Logo.png"></img></div></div></h1>
-<<<<<<< HEAD
-<p>汇编语言:寄存器
-寄存器是CPU的主要部件，寄存器使程序要用来读写指令的部件，最近学习的是8086CPU，主要有14个寄存器，分别为AX，BX，CX，DX，SI，DI，SP，BP，IP，CS，SS，DS，ES，PSW。</p>
-<p>一、通用寄存器
-（1）其中AX，BX，CX，DX叫做通用寄存器，，通常用来存放一般的数据，这些存放数据的都是16位的，其中8086CPU的上一代CPU为8位的，所以AX可以分成AH和AL，AX的低8位位AL，AX的高8位为AH。并且都是可以独立使用的。以此类推，BX，CX，DX，都可以拆分为BH，BL，CH，CL，DH，DL。</p>
-<p>（2）字在寄存器中的储存
-字节，记做byte，一个字节由8个比特组成，可以存放在8位寄存器中，其中一个字由两个字节组成，所以一个字可以存放在一个16位的寄存器中，而组成这个字的两个字节一个被称为高字节，一个被称为低字节。</p>
-<p>（3）简单的汇编指令
-mov ax，18 意思是将18送入寄存器AX
-add ax，18 将寄存器ax上的值加上18
-mov ax，bx 将寄存器bx的值送到ax寄存器中
-add ax，bx 把bx寄存器上的值加上ax上的值然后保存到寄存器ax上</p>
-<p>（4）物理地址
-每一个内存单元在存储空间上都有唯一的地址，称为物理地址，在8086CPU中，能一次性处理，传输，暂时村春16位的地址。8086CPU有20位地址总线，也就是说，可以传送20位地址，达到1MB寻址能力，但是8086CPU是16位结构，只能送出16位的地址，寻址能力只有64kb。所以采用物理地址=段地址<em>16+偏移地址的方法。其中段地址和偏移地址都是16位，但是物理地址是20位。其本质为，CPU在访问内存时，用一个基础地址（段地址</em>16）加上一个偏移地址，给出内存单元的物理地址。</p>
-<p>（5）段地址的概念
-段地址并不是把内存分为一个个段，段的划分来自于CPU，由于8086CPU用寄出地址（段地址<em>16）+偏移地址=物理地址的方式给出内存单元的物理地址，所以可以用分段的凡是来管理内存，在编程时可以根据需要，将若干个地址连续的内存单元看作一个段，用段地址</em>16定位段的起始地址，用偏移地址定位段中的没存档，并且段地址一定为16的倍数，所以一个段的起始地址也一定使16的倍数，一个段的长度最大为64kb。</p>
-=======
-
->>>>>>> 83f826c1bb46535cae997a9ebbe1f6d60664c4cc
-<img src="../Photo/Logo.png"/>
-<h3 id="xxx">  <a href="1.html">xxx</a></h3>
-<h3 id="ffff">  <a href="2.html">ffff</a></h3>
+<h1 id="%E8%BF%94%E5%9B%9E%E7%9B%AE%E5%BD%95"><a href="../README.html">返回目录</a></h1>
+<h2 id="%E6%A6%82%E8%BF%B0---%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86"><a href="Index.html">概述</a> - 账号管理</h2>
+<p>  我们可以用下图表示 eIvy Framework 的账号管理模型。</p>
+<p>  <img src="Image/2020072201.png" width="600"></img></p>
+<p>  eIvy Framework 账号管理是独立于任何实体的，即本身不与人员、机构等信息直接挂钩，这有助于账号管理应用于不同系统。但在多数系统中账号还是和人员关联，不过也有和其他实体关联，例如：在我们开发的项目申报系统中，一个项目就需要生成一个账号，这就使得账号不是与人员关联，而是与项目关联的。为了适应不同系统账号关联不同实体的需求，eIvy Framework 提供了用户映射(User Mapping)，即通过把用户名与指定的实体与实体 ID 关联的做法。此外，有些系统还要求一个实体可以关联多个账号，例如：有些系统允许以人员的工号、邮箱、手机号同时作为该人员的登录账号。为此，用户映射满足的是实体与账号之间的多对一的关联关系。</p>
 <hr>
 <p>  © eIvy Framework 2019.</p>
 
