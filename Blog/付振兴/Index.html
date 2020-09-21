@@ -365,21 +365,204 @@ code {
           : 'default'
     });
   </script>
-
 <h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22img-width%2280%22-height%2240%22-src%22logopng%22imgdivdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../../Logo.png"></img></div></div></h1>
-<p>付振兴2020暑假学习总结</p>
-<img src="../Photo/Logo.png"/>
-<hr>
-<p>  © eIvy Framework 2020
-.</p>
+<blockquote>
+<h2 id="%E4%B8%80%E5%89%8D%E7%AB%AF">一、前端</h2>
+<blockquote>
+<h3 id="%E4%B8%80js">（一）JS</h3>
+<blockquote>
+<h4 id="1-js%E7%BB%9F%E8%AE%A1%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE">(1) JS统计表格数据:</h4>
+</blockquote>
+</blockquote>
+</blockquote>
+  <img src="../Photo/sum_01.png" height="500px" width="80%"/>  
+<p>图1：JS统计表格数据<br>
+　 在统计表格数据之前，我们首先要明确要统计哪一行或哪一列的数据，例如上图，我们需要统计定员数这一列的数据总和。为了便于选择器选择，因此，我们为这一列加上特定
+的类名&quot;staffcapacity&quot;。</p>
+<p>首先,设定一个触发事件,这里我们设定为change事件。当输入框为空时,它的值类型为NaN,是无法进行加法运算的,这里我们先遍历一边数据,当数据为空时,让它默认等于0,这样就能每输入一个数据便能统计一次。这里需要注意不能直接用value值去运算，我们需要用parseInt将值转换为Int类型，在做运算。</p>
+<p>代码如下:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sumStaffCapacities</span>(<span class="hljs-params"></span>) </span>{
+    $($(<span class="hljs-string">'tr.FieldSummary'</span>).find(<span class="hljs-string">'td'</span>)[<span class="hljs-number">1</span>]).text(<span class="hljs-string">''</span>);
+    $(<span class="hljs-string">'.staffcapacity'</span>).change(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;
+        $(<span class="hljs-string">'.staffcapacity'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">if</span> ($(<span class="hljs-keyword">this</span>).val() == <span class="hljs-string">''</span>) {
+                $(<span class="hljs-keyword">this</span>).val(<span class="hljs-number">0</span>);
+            }
+            sum += <span class="hljs-built_in">parseInt</span>($(<span class="hljs-keyword">this</span>).val());
+        });
+        $($(<span class="hljs-string">'tr.FieldSummary'</span>).find(<span class="hljs-string">'td'</span>)[<span class="hljs-number">2</span>]).text(sum + <span class="hljs-string">"人"</span>);
+    });
+    $(<span class="hljs-string">'.staffcapacity'</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;
+        $(<span class="hljs-string">'.staffcapacity'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">if</span> ($(<span class="hljs-keyword">this</span>).val() == <span class="hljs-string">''</span>) {
+                $(<span class="hljs-keyword">this</span>).val(<span class="hljs-number">0</span>);
+            }
+            sum += <span class="hljs-built_in">parseInt</span>($(<span class="hljs-keyword">this</span>).val());
+        });
+        $($(<span class="hljs-string">'tr.FieldSummary'</span>).find(<span class="hljs-string">'td'</span>)[<span class="hljs-number">2</span>]).text(sum + <span class="hljs-string">"人"</span>);
+    });
+}
+</div></code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<h4 id="2-js%E9%9A%90%E8%97%8F%E4%B8%8E%E6%98%BE%E7%A4%BA%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9">(2) JS隐藏与显示网页内容</h4>
+</blockquote>
+</blockquote>
+</blockquote>
+  <img src="../Photo/display_01.png" width="80%" height="400px">
+<p>图2：JS隐藏于显示网页内容<br>
+首先将“填报时间已截止！”这段文字的display属性设置为none，这样这段文字就隐藏了起来。然后将截止时间的value值转换为Data类型，与当前服务器时间比较，若截止时间&lt;当前时间，则执行js更改这段文字的css样式，将其的display属性更改为inline-block。
+代码如下:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showEndWarning</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> endtime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+  endtime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.parse($(<span class="hljs-string">'span.EndTime'</span>).text().replace(<span class="hljs-regexp">/-/g</span>, <span class="hljs-string">"/"</span>)));
+  <span class="hljs-keyword">var</span> today = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+  <span class="hljs-keyword">if</span> (endtime &amp; lt; today) {
+    <span class="hljs-comment">//alert("超过截止时间,已截止填报");</span>
+    $(<span class="hljs-string">'.EndWarningAlert'</span>).css(<span class="hljs-string">'display'</span>, <span class="hljs-string">'inline'</span>);
+  }
+}
+</div></code></pre>
+<blockquote>
+<blockquote>
+<h3 id="%E4%BA%8C-css">(二) css</h3>
+<blockquote>
+<h4 id="1-css%E4%BC%AA%E7%B1%BB">(1) css伪类</h4>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>伪类可以看作以选中元素为基准点，此元素的一些状态或属性。
+chrome消除 div 滚动条的宽度，通过箭头键直接控制滚动：
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-id">#divContainer</span> {
+  <span class="hljs-attribute">overflow</span>: auto;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">160px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">260px</span>;
+  <span class="hljs-attribute">background-color</span>: red;
+}
 
-<h1 id="div-style%22height40px%22div-style%22floatleft%22eivy-framework-%E5%BC%80%E5%8F%91%E8%80%85%E5%8D%9A%E5%AE%A2div-div-style%22floatright%22img-width%2280%22-height%2240%22-src%22logopng%22imgdivdiv"><div style="height:40px"><div style="float:left">eIvy Framework 开发者博客</div> <div style="float:right"><img width="80" height="40" src="../Logo.png"></img></div></div></h1>
-<p>参阅以下博客主的文章：</p>
-<p><a href="%E4%BB%98%E6%8C%AF%E5%85%B4/Index.html">付振兴</a>
-<img src="../Photo/Logo.png"/></p>
+<span class="hljs-selector-id">#divContainer</span><span class="hljs-selector-pseudo">::-webkit-scrollbar</span> {
+  <span class="hljs-attribute">border-width</span>: <span class="hljs-number">1px</span>;
+}
+</div></code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<h4 id="2-css%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0">(2) css伪类与伪元素</h4>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>伪类选择元素基于的是当前元素处于的状态，或者说元素当前所具有的特性，而不是元素的id、class、属性等静态的标志。由于状态是动态变化的，所以一个元素达到一个特定状态时，它可能得到一个伪类的样式；当状态改变时，它又会失去这个样式。由此可以看出，它的功能和class有些类似，但它是基于文档之外的抽象，所以叫伪类。
+
+与伪类针对特殊状态的元素不同的是，伪元素是对元素中的特定内容进行操作，它所操作的层次比伪类更深了一层，也因此它的动态性比伪类要低得多。实际上，设计伪元素的目的就是去选取诸如元素内容第一个字（母）、第一行，选取某些内容前面或后面这种普通的选择器无法完成的工作。它控制的内容实际上和元素是相同的，但是它本身只是基于元素的抽象，并不存在于文档中，所以叫伪元素。
+</code></pre>
+<blockquote>
+<h2 id="%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%BA%93">二、数据库</h2>
+<blockquote>
+<h3 id="%E4%B8%80%E8%A7%A6%E5%8F%91%E5%99%A8">（一）触发器</h3>
+</blockquote>
+</blockquote>
+<pre><code>  例如：当用户向一张表格中插入数据时，我们需要阻止用户向该表中插入重复的数据，那么我们可以在该表格设置中写一个新增触发器。即每当用户插入数据时，都会执行触发器脚本。
+  代码如下：
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span> @<span class="hljs-keyword">ID</span> <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">DECLARE</span> @UnitID <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">DECLARE</span> @WorkUnitID <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">DECLARE</span> @WorkshopUnitID <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">DECLARE</span> @TeamID <span class="hljs-built_in">int</span>
+<span class="hljs-keyword">DECLARE</span> @PostID <span class="hljs-built_in">int</span>
+
+<span class="hljs-keyword">SELECT</span> @<span class="hljs-keyword">ID</span> = <span class="hljs-keyword">ID</span>, @UnitID = UnitID, @WorkUnitID = WorkUnitID, @WorkshopUnitID = WorkshopUnitID, @PostID = PostID, @TeamID = TeamID <span class="hljs-keyword">FROM</span> inserted
+<span class="hljs-keyword">IF</span> (<span class="hljs-keyword">exists</span>(<span class="hljs-keyword">select</span> <span class="hljs-keyword">ID</span> <span class="hljs-keyword">from</span> UnitsAndPosts <span class="hljs-keyword">where</span> UnitID = @UnitID <span class="hljs-keyword">AND</span> WorkUnitID = @WorkUnitID <span class="hljs-keyword">AND</span> WorkshopUnitID = @WorkshopUnitID <span class="hljs-keyword">AND</span> PostID = @PostID <span class="hljs-keyword">AND</span> TeamID = @TeamID <span class="hljs-keyword">AND</span> <span class="hljs-keyword">ID</span> != @<span class="hljs-keyword">ID</span>))
+<span class="hljs-keyword">BEGIN</span>
+  RAISERROR(<span class="hljs-string">'禁止新增重复数据'</span>,<span class="hljs-number">16</span>,<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">RETURN</span>
+<span class="hljs-keyword">END</span>
+</div></code></pre>
+<blockquote>
+<blockquote>
+<h3 id="%E4%BA%8C%E6%B8%B8%E6%A0%87">（二）游标</h3>
+</blockquote>
+</blockquote>
+<pre><code> 在数据库中，游标是一个十分重要的概念。游标提供了一种对从表中检索出的数据进行操作的灵活手段，就本质而言，游标实际上是一种能从包括多条数据记录的结果集中每次提取一条记录的机制。游标总是与一条T_SQL 选择语句相关联因为游标由结果集（可以是零条、一条或由相关的选择语句检索出的多条记录）和结果集中指向特定记录的游标位置组成。当决定对结果集进行处理时，必须声明一个指向该结果集的游标。如果曾经用 C 语言写过对文件进行处理的程序，那么游标就像您打开文件所得到的文件句柄一样，只要文件打开成功，该文件句柄就可代表该文件。对于游标而言，其道理是相同的。可见游标能够实现按与传统程序读取平面文件类似的方式处理来自基础表的结果集，从而把表中数据以平面文件的形式呈现给程序。
+
+  我们知道关系数据库管理系统实质是面向集合的，在MS SQL SERVER 中并没有一种描述表中单一记录的表达形式，除非使用where 子句来限制只有一条记录被选中。因此我们必须借助于游标来进行面向单条记录的数据处理。 
+由此可见，游标允许应用程序对查询语句select 返回的行结果集中每一行进行相同或不同的操作，而不是一次对整个结果集进行同一种操作；它还提供对基于游标位置而对表中数据进行删除或更新的能力；而且，正是游标把作为面向集合的数据库管理系统和面向行的程序设计两者联系起来，使两个数据处理方式能够进行沟通。
+
+详细介绍请见：https://www.cnblogs.com/sujingran/articles/2091076.html
+</code></pre>
+<blockquote>
+<blockquote>
+<h3 id="%E4%B8%89-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0">(三) 用户自定义函数</h3>
+</blockquote>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span>
+<span class="hljs-keyword">FUNCTION</span> F_BOM(@MD003 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),@MD006 <span class="hljs-built_in">INT</span>) <span class="hljs-comment">--创建一个函数bai</span>
+<span class="hljs-keyword">returns</span>
+@t <span class="hljs-keyword">table</span>(MD003 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),MD006 <span class="hljs-built_in">INT</span>) <span class="hljs-comment">---返回一个表，字段是自己定义的</span>
+<span class="hljs-keyword">begin</span>
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> @t(MD003,MD006) <span class="hljs-keyword">select</span> MD003,MD006*@MD006 <span class="hljs-keyword">FROM</span> BOMMD <span class="hljs-keyword">WHERE</span> MD001=@MD003 <span class="hljs-keyword">AND</span> MD014=<span class="hljs-string">'Y'</span> <span class="hljs-comment">-----开始函数，向自己定义的表中插入数据</span>
+<span class="hljs-keyword">while</span> @@zhirowcount&lt;&gt;<span class="hljs-number">0</span> <span class="hljs-comment">----如果上个语dao句插入了，开始下面的</span>
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> @t(MD003,MD006)
+<span class="hljs-keyword">select</span>
+A.MD003,A.MD006*B.MD006
+<span class="hljs-keyword">from</span>
+BOMMD A,@t B
+<span class="hljs-keyword">where</span>
+A.MD014=<span class="hljs-string">'Y'</span> <span class="hljs-keyword">AND</span>
+A.MD001=B.MD003 <span class="hljs-keyword">collate</span> Chinese_PRC_CI_AI_WS
+<span class="hljs-keyword">and</span>
+<span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span>(<span class="hljs-keyword">select</span> <span class="hljs-number">1</span> <span class="hljs-keyword">from</span> @t <span class="hljs-keyword">where</span> MD003=A.MD003 <span class="hljs-keyword">collate</span> Chinese_PRC_CI_AI_WS)
+<span class="hljs-comment">----根据where条件再次插入数据</span>
+参考资料： <span class="hljs-keyword">http</span>://blog.csdn.net/roy_88/<span class="hljs-keyword">archive</span>/<span class="hljs-number">2006</span>/<span class="hljs-number">12</span>/<span class="hljs-number">24</span>/<span class="hljs-number">1458449.</span>aspx
+</div></code></pre>
+<blockquote>
+<h1 id="%E4%B8%89%E6%A1%86%E6%9E%B6">三、框架</h1>
+<blockquote>
+<h2 id="%E4%B8%80%E8%A1%A8%E6%A0%BC">（一）表格</h2>
+</blockquote>
+</blockquote>
+<pre><code> 从这里你可以新增表格。然后在该表格内可以添加该表格的字段  
+ 字段技术参考：http://39.98.110.129/Documents/eIvyFramework/Chapter10/FieldForm.html
+</code></pre>
+  <img src="../Photo/form_01.png" width="80%" height="500px">  
+<blockquote>
+<blockquote>
+<h2 id="%E4%BA%8C-%E8%A7%86%E5%9B%BE">（二） 视图</h2>
+</blockquote>
+</blockquote>
+<img src="../Photo/view_01.png" width="80%" height="500px">  
+<blockquote>
+<blockquote>
+<h2 id="%E4%B8%89-%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6">（三） 常用控件</h2>
+</blockquote>
+</blockquote>
+<pre><code>  动态列表：页面需要有数据显示，我们需要在页面上放置该控件。
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICLIST</span>/&gt;</span>
+</div></code></pre>
+<pre><code>  动态交叉表：可将动态列表的二维表数据自动转置为交叉表。技术参考：http://39.98.110.129/Documents/eIvyFramework/Chapter10/Page/DynamicCrossTable.html
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:DYNAMICCROSSTABLE</span>/&gt;</span>
+</div></code></pre>
+<pre><code> 按钮：页面按钮的DynamicDataControlID属性一定要配置，CommandName决定按钮执行的命令，如若不想按钮执行任何命令可以令CommandName=&quot;Empty&quot;。除此之外，还可以为该按钮配置前置或后置脚本。例：PostScriptSqlName=&quot;***&quot; PostSqlScriptParameters=&quot;***&quot;。脚本名称与脚本需要用到的参数一定都要配置。
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:COMMANDBUTTON</span> <span class="hljs-attr">CommandName</span>=<span class="hljs-string">"Empty"</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"**"</span> <span class="hljs-attr">CssClass</span>=<span class="hljs-string">"btn btn-success"</span> <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DDC1"</span>&gt;</span>
+</div></code></pre>
+<pre><code>Sql脚本器：已进入该页面就会执行该脚本，以下为该标签的属性配置。
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:SQLSCRIPTOR</span> <span class="hljs-attr">xmlns:eIvy</span>=<span class="hljs-string">"http://www.eIvy.com"</span> <span class="hljs-attr">ExecutePagePostManner</span>=<span class="hljs-string">"Initial"</span> <span class="hljs-attr">ScriptName</span>=<span class="hljs-string">"PromptEndReport"</span> <span class="hljs-attr">SqlScriptParameters</span>=<span class="hljs-string">"{Page.SecurityContext.LoginUserMapping.EntityID.@EntityID}{Page.Request.QueryString[ThemeID].@ThemeID}{SecurityContext.LoginRole.@LoginRole}"</span> <span class="hljs-attr">DynamicDataControlID</span>=<span class="hljs-string">"DDC1"</span> <span class="hljs-attr">ErrorThrownManner</span>=<span class="hljs-string">"Alert"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">eIvy:SQLSCRIPTOR</span>&gt;</span>
+</div></code></pre>
+<pre><code>判断标签：可以用在页面或视图模板用以约束各个角色看到的页面或视图内容。约束条件可以是角色，也可以是字段，但当约束条件为字段是某个字段时，需要在该表格的视图模板下的&lt;eIvy:ROWREPEATOR&gt;标签内书写IF标签。与之相反，但用法相同的判断标签&lt;eIvy:IFNOT&gt;&lt;/eIvy:IFNOT&gt;。
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">eIvy:IF</span> <span class="hljs-attr">Test</span>=<span class="hljs-string">"@SecurityContext.LoginRole"</span> <span class="hljs-attr">Values</span>=<span class="hljs-string">"SubfirmLaborHealth"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">eIvy:IF</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">eIvy:IF</span> <span class="hljs-attr">Test</span>=<span class="hljs-string">"@State"</span> <span class="hljs-attr">Values</span>=<span class="hljs-string">"**"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">eIvy:IF</span>&gt;</span>
+</div></code></pre>
 <hr>
 <p>  © eIvy Framework 2019.</p>
-
 
 </body>
 </html>
